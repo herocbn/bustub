@@ -1,0 +1,1 @@
+/usr/bin/c++   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -fPIC CMakeFiles/executor_test.dir/execution/executor_test.cpp.o  -o executor_test  -Wl,-rpath,/home/cbn/DB/bustub/standard/lib ../lib/libbustub_shared.so ../lib/libgmock_main.so.1.12.1 ../lib/libthirdparty_murmur3.so ../lib/libgmock.so.1.12.1 ../lib/libgtest.so.1.12.1 -lpthread 

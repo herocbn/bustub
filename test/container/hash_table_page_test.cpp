@@ -23,7 +23,7 @@
 namespace bustub {
 
 // NOLINTNEXTLINE
-TEST(HashTablePageTest, DISABLED_DirectoryPageSampleTest) {
+TEST(HashTablePageTest, DirectoryPageSampleTest) {
   DiskManager *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(5, disk_manager);
 
@@ -57,7 +57,7 @@ TEST(HashTablePageTest, DISABLED_DirectoryPageSampleTest) {
 }
 
 // NOLINTNEXTLINE
-TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
+TEST(HashTablePageTest, BucketPageSampleTest) {
   DiskManager *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(5, disk_manager);
 
@@ -66,7 +66,6 @@ TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
 
   auto bucket_page = reinterpret_cast<HashTableBucketPage<int, int, IntComparator> *>(
       bpm->NewPage(&bucket_page_id, nullptr)->GetData());
-
   // insert a few (key, value) pairs
   for (unsigned i = 0; i < 10; i++) {
     assert(bucket_page->Insert(i, i, IntComparator()));
@@ -77,14 +76,12 @@ TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
     EXPECT_EQ(i, bucket_page->KeyAt(i));
     EXPECT_EQ(i, bucket_page->ValueAt(i));
   }
-
   // remove a few pairs
   for (unsigned i = 0; i < 10; i++) {
     if (i % 2 == 1) {
       assert(bucket_page->Remove(i, i, IntComparator()));
     }
   }
-
   // check for the flags
   for (unsigned i = 0; i < 15; i++) {
     if (i < 10) {
