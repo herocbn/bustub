@@ -55,6 +55,20 @@ class NestedLoopJoinExecutor : public AbstractExecutor {
  private:
   /** The NestedLoopJoin plan node to be executed. */
   const NestedLoopJoinPlanNode *plan_;
+  std::unique_ptr<AbstractExecutor> left_executor_;
+  std::unique_ptr<AbstractExecutor> right_executor_;
+/*
+  TableInfo * left_table_info_;
+  TableInfo * right_table_info_;
+  TableIterator left_iter_;
+  TableIterator right_iter_;
+  */
+  bool flag_;
+  Catalog *catalog_;
+  const AbstractPlanNode *left_plan_;
+  const AbstractPlanNode *right_plan_;
+  Tuple left_tuple_;
+  RID left_rid_;
 };
 
 }  // namespace bustub
