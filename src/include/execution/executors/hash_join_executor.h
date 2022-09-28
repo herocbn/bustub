@@ -13,30 +13,32 @@
 #pragma once
 
 #include <memory>
+#include <unordered_map>
 #include <utility>
+#include <vector>
 #include "common/util/hash_util.h"
 #include "execution/executor_context.h"
 #include "execution/executors/abstract_executor.h"
 #include "execution/plans/hash_join_plan.h"
 #include "storage/table/tuple.h"
-namespace bustub{
-  struct hash_join_key {
-	Value keys_;
-	auto operator==(const hash_join_key &other) const -> bool {
-	    return (keys_.CompareEquals(other.keys_) == CmpBool::CmpTrue);
-	}
-  };
+namespace bustub {
+struct HashJoinKey {
+  Value keys_;
+  auto operator==(const HashJoinKey &other) const -> bool {
+    return (keys_.CompareEquals(other.keys_) == CmpBool::CmpTrue);
+  }
+};
 
-}
+}  // namespace bustub
 namespace std {
 /** Implements std::hash on Key */
 template <>
-struct hash<bustub::hash_join_key> {
-  auto operator()(const bustub::hash_join_key &key) const -> std::size_t {
+struct hash<bustub::HashJoinKey> {
+  auto operator()(const bustub::HashJoinKey &key) const -> std::size_t {
     size_t curr_hash = 0;
-      if (!key.keys_.IsNull()) {
-        curr_hash = bustub::HashUtil::CombineHashes(curr_hash, bustub::HashUtil::HashValue(&key.keys_));
-      }
+    if (!key.keys_.IsNull()) {
+      curr_hash = bustub::HashUtil::CombineHashes(curr_hash, bustub::HashUtil::HashValue(&key.keys_));
+    }
     return curr_hash;
   }
 };
@@ -78,13 +80,12 @@ class HashJoinExecutor : public AbstractExecutor {
   const HashJoinPlanNode *plan_;
   std::unique_ptr<AbstractExecutor> left_child_;
   std::unique_ptr<AbstractExecutor> right_child_;
-  const Schema * l_schema_;
-  std:: unordered_map<hash_join_key,std::vector<Tuple>> h_map_;
+  const Schema *l_schema_;
+  std::unordered_map<HashJoinKey, std::vector<Tuple>> h_map_;
   std::vector<Tuple> left_tuples_{};
   RID right_rid_;
   Tuple right_tuple_;
   bool flag_;
-
 };
-}
+}  // namespace bustub
 // namespace bustub

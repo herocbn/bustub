@@ -11,61 +11,54 @@
 //===----------------------------------------------------------------------===//
 
 #include "execution/executors/seq_scan_executor.h"
-//#include "storage/table/table_iterator.h"
 
 namespace bustub {
 
-SeqScanExecutor::SeqScanExecutor(ExecutorContext *exec_ctx, const SeqScanPlanNode *plan) : AbstractExecutor(exec_ctx),plan_(plan),table_iter_(nullptr,RID(),nullptr) {
-		
-}
-bool SeqScanExecutor::IsSameSchema(const Schema *opt,const Schema *schema){
-	if(opt->ToString() == schema->ToString()){
-		return true;
-	}
-	return false;
+SeqScanExecutor::SeqScanExecutor(ExecutorContext *exec_ctx, const SeqScanPlanNode *plan)
+    : AbstractExecutor(exec_ctx), plan_(plan), table_iter_(nullptr, RID(), nullptr) {}
+bool SeqScanExecutor::IsSameSchema(const Schema *opt, const Schema *schema) {
+  return (opt->ToString() == schema->ToString());
 }
 void SeqScanExecutor::Init() {
-	table_info_ = exec_ctx_->GetCatalog()->GetTable(plan_->GetTableOid());
-	table_iter_ = table_info_->table_->Begin(exec_ctx_->GetTransaction());
-	 auto output_schema = plan_->OutputSchema();
-  	auto table_schema = table_info_->schema_;
-  	is_same_schema_ = IsSameSchema(output_schema,&table_schema);
+  table_info_ = exec_ctx_->GetCatalog()->GetTable(plan_->GetTableOid());
+  table_iter_ = table_info_->table_->Begin(exec_ctx_->GetTransaction());
+  auto output_schema = plan_->OutputSchema();
+  auto table_schema = table_info_->schema_;
+  is_same_schema_ = IsSameSchema(output_schema, &table_schema);
 }
-//Catalog
-auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool { 
-	auto predicate = plan_->GetPredicate();
-	auto schema = table_info_->schema_;
-	auto opt = plan_->OutputSchema();
-	bool res ;
-	while(table_iter_!=table_info_->table_->End()){
-		res = true;
-		auto tp = &(*table_iter_);
-		if(predicate != nullptr){
-			res = predicate->Evaluate(tp, &schema).GetAs<bool>();
-		}
-		if(res){
-			if(is_same_schema_){
-				*tuple = *tp;
-				*rid = tp->GetRid();
-			}else{
-         		std::vector<Value> values;
-         		values.reserve(opt->GetColumnCount());
-         		for(const auto &column:opt->GetColumns()){
-         			auto value = column.GetExpr()->Evaluate(tp,&schema);
-         			values.push_back(value);
-         		}
-         		*tuple = Tuple(values,opt);
-         		*rid = tp->GetRid();
-			}
-    		
-		}
-		++table_iter_;
-		if(res){
-			return true;
-		}
-	}
-	return false;
+// Catalog
+auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool {
+  auto predicate = plan_->GetPredicate();
+  auto schema = table_info_->schema_;
+  auto opt = plan_->OutputSchema();
+  bool res;
+  while (table_iter_ != table_info_->table_->End()) {
+    res = true;
+    auto tp = &(*table_iter_);
+    if (predicate != nullptr) {
+      res = predicate->Evaluate(tp, &schema).GetAs<bool>();
+    }
+    if (res) {
+      if (is_same_schema_) {
+        *tuple = *tp;
+        *rid = tp->GetRid();
+      } else {
+        std::vector<Value> values;
+        values.reserve(opt->GetColumnCount());
+        for (const auto &column : opt->GetColumns()) {
+          auto value = column.GetExpr()->Evaluate(tp, &schema);
+          values.push_back(value);
+        }
+        *tuple = Tuple(values, opt);
+        *rid = tp->GetRid();
+      }
+    }
+    ++table_iter_;
+    if (res) {
+      return true;
+    }
+  }
+  return false;
 }
 
 }  // namespace bustub
-

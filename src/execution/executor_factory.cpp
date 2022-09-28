@@ -23,6 +23,7 @@
 #include "execution/executors/index_scan_executor.h"
 #include "execution/executors/insert_executor.h"
 #include "execution/executors/limit_executor.h"
+#include "execution/executors/mock_scan_executor.h"
 #include "execution/executors/nested_index_join_executor.h"
 #include "execution/executors/nested_loop_join_executor.h"
 #include "execution/executors/seq_scan_executor.h"
@@ -37,6 +38,9 @@ auto ExecutorFactory::CreateExecutor(ExecutorContext *exec_ctx, const AbstractPl
     // Create a new sequential scan executor
     case PlanType::SeqScan: {
       return std::make_unique<SeqScanExecutor>(exec_ctx, dynamic_cast<const SeqScanPlanNode *>(plan));
+    }
+    case PlanType::MockScan: {
+      return std::make_unique<MockScanExecutor>(exec_ctx, dynamic_cast<const MockScanPlanNode *>(plan));
     }
 
     // Create a new index scan executor

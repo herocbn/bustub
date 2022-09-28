@@ -20,34 +20,34 @@ UpdateExecutor::UpdateExecutor(ExecutorContext *exec_ctx, const UpdatePlanNode *
     : AbstractExecutor(exec_ctx), plan_(plan), child_executor_(std::move(child_executor)) {}
 
 void UpdateExecutor::Init() {
-	table_info_ = exec_ctx_->GetCatalog()->GetTable(plan_->TableOid());
-	child_executor_->Init();
+  table_info_ = exec_ctx_->GetCatalog()->GetTable(plan_->TableOid());
+  child_executor_->Init();
 }
 
 auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
-	//bool res = false;
-	auto schema = (table_info_->schema_);
-	auto txn = exec_ctx_->GetTransaction();
-	// Get the original tuple
-	Tuple old_tuple;
-	RID old_rid;
-	auto indexes = exec_ctx_->GetCatalog()->GetTableIndexes(table_info_->name_);
-	//child_executor_->Next(&old_tuple,&old_rid);
-	while(child_executor_->Next(&old_tuple,&old_rid)){
-    	//Get the updated tuple
-    	auto updated_tuple = GenerateUpdatedTuple(old_tuple);
-    	//modify it in the table
-    	table_info_->table_->UpdateTuple(updated_tuple,old_rid,txn);
-    	//modify it in the index
-    	Tuple key_tuple;
-    	for(auto idx_info: indexes ){
-    		auto key_schema = idx_info->key_schema_;
-    		auto key_attrs = idx_info->index_->GetKeyAttrs();
-			key_tuple = updated_tuple.KeyFromTuple(schema,key_schema,key_attrs);
-			idx_info->index_->InsertEntry(key_tuple,old_rid,txn);
-    	}
-	}
-	return false;
+  // bool res = false;
+  auto schema = (table_info_->schema_);
+  auto txn = exec_ctx_->GetTransaction();
+  // Get the original tuple
+  Tuple old_tuple;
+  RID old_rid;
+  auto indexes = exec_ctx_->GetCatalog()->GetTableIndexes(table_info_->name_);
+  // child_executor_->Next(&old_tuple,&old_rid);
+  while (child_executor_->Next(&old_tuple, &old_rid)) {
+    // Get the updated tuple
+    auto updated_tuple = GenerateUpdatedTuple(old_tuple);
+    // modify it in the table
+    table_info_->table_->UpdateTuple(updated_tuple, old_rid, txn);
+    // modify it in the index
+    Tuple key_tuple;
+    for (auto idx_info : indexes) {
+      auto key_schema = idx_info->key_schema_;
+      auto key_attrs = idx_info->index_->GetKeyAttrs();
+      key_tuple = updated_tuple.KeyFromTuple(schema, key_schema, key_attrs);
+      idx_info->index_->InsertEntry(key_tuple, old_rid, txn);
+    }
+  }
+  return false;
 }
 
 auto UpdateExecutor::GenerateUpdatedTuple(const Tuple &src_tuple) -> Tuple {

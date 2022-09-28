@@ -106,6 +106,7 @@ Catalog	include/catalog/catalog.h	/^  Catalog(BufferPoolManager *bpm, LockManage
 Catalog	include/catalog/catalog.h	/^class Catalog {$/;"	c	namespace:bustub
 CheckpointManager	include/recovery/checkpoint_manager.h	/^  CheckpointManager(TransactionManager *transaction_manager, LogManager *log_manager,$/;"	f	class:bustub::CheckpointManager
 CheckpointManager	include/recovery/checkpoint_manager.h	/^class CheckpointManager {$/;"	c	namespace:bustub
+ClearReadable	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::ClearReadable(uint32_t bucket_idx) {$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
 ClockReplacer	buffer/clock_replacer.cpp	/^ClockReplacer::ClockReplacer(size_t num_pages) {}$/;"	f	class:bustub::ClockReplacer
 ClockReplacer	include/buffer/clock_replacer.h	/^class ClockReplacer : public Replacer {$/;"	c	namespace:bustub
 CmpBool	include/type/type.h	/^  virtual auto CompareEquals(const Value &left, const Value &right) const -> CmpBool;$/;"	m	class:bustub::CmpBool::Type
@@ -156,7 +157,7 @@ DeallocatePage	include/buffer/buffer_pool_manager_instance.h	/^  void Deallocate
 DecimalType	include/type/decimal_type.h	/^class DecimalType : public NumericType {$/;"	c	namespace:bustub
 DecimalType	type/decimal_type.cpp	/^DecimalType::DecimalType() : NumericType(TypeId::DECIMAL) {}$/;"	f	class:bustub::DecimalType
 DecrGlobalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::DecrGlobalDepth() { global_depth_--; }$/;"	f	class:bustub::HashTableDirectoryPage
-DecrLocalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::DecrLocalDepth(uint32_t bucket_idx) {}$/;"	f	class:bustub::HashTableDirectoryPage
+DecrLocalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::DecrLocalDepth(uint32_t bucket_idx) {$/;"	f	class:bustub::HashTableDirectoryPage
 Delete	include/execution/plans/abstract_plan.h	/^  Delete,$/;"	m	class:bustub::PlanType
 DeleteEntry	storage/index/b_plus_tree_index.cpp	/^void BPLUSTREE_INDEX_TYPE::DeleteEntry(const Tuple &key, RID rid, Transaction *transaction) {$/;"	f	class:bustub::BPLUSTREE_INDEX_TYPE
 DeleteEntry	storage/index/extendible_hash_table_index.cpp	/^void HASH_TABLE_INDEX_TYPE::DeleteEntry(const Tuple &key, RID rid, Transaction *transaction) {$/;"	f	class:bustub::HASH_TABLE_INDEX_TYPE
@@ -202,6 +203,11 @@ GenericComparator	include/storage/index/generic_key.h	/^  GenericComparator(cons
 GenericComparator	include/storage/index/generic_key.h	/^  explicit GenericComparator(Schema *key_schema) : key_schema_(key_schema) {}$/;"	f	class:bustub::GenericComparator
 GenericComparator	include/storage/index/generic_key.h	/^class GenericComparator {$/;"	c	namespace:bustub
 GenericKey	include/storage/index/generic_key.h	/^class GenericKey {$/;"	c	namespace:bustub
+GetChildAt	include/execution/plans/abstract_plan.h	/^  const AbstractPlanNode *GetChildAt(uint32_t child_idx) const { return children_[child_idx]; }$/;"	f	class:bustub::AbstractPlanNode
+GetChildren	include/execution/plans/abstract_plan.h	/^  const std::vector<const AbstractPlanNode *> &GetChildren() const { return children_; }$/;"	f	class:bustub::AbstractPlanNode
+GetOutputSchema	include/execution/executors/mock_scan_executor.h	/^  const Schema *GetOutputSchema() const { return plan_->OutputSchema(); }$/;"	f	class:bustub::MockScanExecutor
+GetSize	include/execution/plans/mock_scan_plan.h	/^  std::size_t GetSize() const { return size_; }$/;"	f	class:bustub::MockScanPlanNode
+GetSplitImageIndex	storage/page/hash_table_directory_page.cpp	/^uint32_t HashTableDirectoryPage::GetSplitImageIndex(uint32_t bucket_idx) {$/;"	f	class:bustub::HashTableDirectoryPage
 GradingCallback	include/buffer/buffer_pool_manager.h	/^  void GradingCallback(bufferpool_callback_fn callback, CallbackType callback_type, page_id_t page_id) {$/;"	f	class:bustub::BufferPoolManager
 GreaterThan	include/execution/expressions/comparison_expression.h	/^enum class ComparisonType { Equal, NotEqual, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual };$/;"	m	class:bustub::ComparisonType
 HASH_TABLE_BLOCK_TYPE	include/storage/page/hash_table_page_defs.h	20;"	d
@@ -216,6 +222,7 @@ HEADER_SIZE	include/recovery/log_record.h	/^  static const int HEADER_SIZE = 20;
 HSTOREDEBUGLOG_H	include/common/logger.h	25;"	d
 HashComparator	include/storage/index/hash_comparator.h	/^class HashComparator {$/;"	c	namespace:bustub
 HashFunction	include/container/hash/hash_function.h	/^class HashFunction {$/;"	c	namespace:bustub
+HashJoin	include/execution/plans/abstract_plan.h	/^  HashJoin, $/;"	m	class:bustub::PlanType
 HashJoinExecutor	execution/hash_join_executor.cpp	/^HashJoinExecutor::HashJoinExecutor(ExecutorContext *exec_ctx, const HashJoinPlanNode *plan,$/;"	f	class:bustub::HashJoinExecutor
 HashJoinExecutor	include/execution/executors/hash_join_executor.h	/^class HashJoinExecutor : public AbstractExecutor {$/;"	c	namespace:bustub
 HashJoinPlanNode	include/execution/plans/hash_join_plan.h	/^  HashJoinPlanNode(const Schema *output_schema, std::vector<const AbstractPlanNode *> &&children,$/;"	f	class:bustub::HashJoinPlanNode
@@ -251,9 +258,10 @@ INVALID_INDEX_PAGE	include/storage/page/b_plus_tree_page.h	/^enum class IndexPag
 INVALID_LSN	include/common/config.h	/^static constexpr int INVALID_LSN = -1;                                        \/\/ invalid log sequence number$/;"	m	namespace:bustub
 INVALID_PAGE_ID	include/common/config.h	/^static constexpr int INVALID_PAGE_ID = -1;                                    \/\/ invalid page id$/;"	m	namespace:bustub
 INVALID_TXN_ID	include/common/config.h	/^static constexpr int INVALID_TXN_ID = -1;                                     \/\/ invalid transaction id$/;"	m	namespace:bustub
-IncrGlobalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::IncrGlobalDepth() {}$/;"	f	class:bustub::HashTableDirectoryPage
-IncrLocalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::IncrLocalDepth(uint32_t bucket_idx) {}$/;"	f	class:bustub::HashTableDirectoryPage
+IncrGlobalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::IncrGlobalDepth() { global_depth_++; }$/;"	f	class:bustub::HashTableDirectoryPage
+IncrLocalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::IncrLocalDepth(uint32_t bucket_idx) {$/;"	f	class:bustub::HashTableDirectoryPage
 IncreaseSize	storage/page/b_plus_tree_page.cpp	/^void BPlusTreePage::IncreaseSize(int amount) {}$/;"	f	class:bustub::BPlusTreePage
+IncrementPollCount	include/execution/plans/mock_scan_plan.h	/^  void IncrementPollCount() const { poll_count_++; }$/;"	f	class:bustub::MockScanPlanNode
 Index	include/storage/index/index.h	/^  explicit Index(std::unique_ptr<IndexMetadata> &&metadata) : metadata_{std::move(metadata)} {}$/;"	f	class:bustub::Index
 Index	include/storage/index/index.h	/^class Index {$/;"	c	namespace:bustub
 IndexInfo	include/catalog/catalog.h	/^  IndexInfo(Schema key_schema, std::string name, std::unique_ptr<Index> &&index, index_oid_t index_oid,$/;"	f	struct:bustub::IndexInfo
@@ -270,17 +278,18 @@ IndexScanPlanNode	include/execution/plans/index_scan_plan.h	/^  IndexScanPlanNod
 IndexScanPlanNode	include/execution/plans/index_scan_plan.h	/^class IndexScanPlanNode : public AbstractPlanNode {$/;"	c	namespace:bustub
 IndexWriteRecord	include/concurrency/transaction.h	/^  IndexWriteRecord(RID rid, table_oid_t table_oid, WType wtype, const Tuple &tuple, const Tuple &old_tuple,$/;"	f	class:bustub::IndexWriteRecord
 IndexWriteRecord	include/concurrency/transaction.h	/^class IndexWriteRecord {$/;"	c	namespace:bustub
-Init	execution/aggregation_executor.cpp	/^void AggregationExecutor::Init() {}$/;"	f	class:bustub::AggregationExecutor
-Init	execution/delete_executor.cpp	/^void DeleteExecutor::Init() {}$/;"	f	class:bustub::DeleteExecutor
-Init	execution/distinct_executor.cpp	/^void DistinctExecutor::Init() {}$/;"	f	class:bustub::DistinctExecutor
-Init	execution/hash_join_executor.cpp	/^void HashJoinExecutor::Init() {}$/;"	f	class:bustub::HashJoinExecutor
+Init	execution/aggregation_executor.cpp	/^void AggregationExecutor::Init() {$/;"	f	class:bustub::AggregationExecutor
+Init	execution/delete_executor.cpp	/^void DeleteExecutor::Init() {$/;"	f	class:bustub::DeleteExecutor
+Init	execution/distinct_executor.cpp	/^void DistinctExecutor::Init() {$/;"	f	class:bustub::DistinctExecutor
+Init	execution/hash_join_executor.cpp	/^void HashJoinExecutor::Init() {$/;"	f	class:bustub::HashJoinExecutor
 Init	execution/index_scan_executor.cpp	/^void IndexScanExecutor::Init() {}$/;"	f	class:bustub::IndexScanExecutor
-Init	execution/insert_executor.cpp	/^void InsertExecutor::Init() {}$/;"	f	class:bustub::InsertExecutor
-Init	execution/limit_executor.cpp	/^void LimitExecutor::Init() {}$/;"	f	class:bustub::LimitExecutor
+Init	execution/insert_executor.cpp	/^void InsertExecutor::Init() {$/;"	f	class:bustub::InsertExecutor
+Init	execution/limit_executor.cpp	/^void LimitExecutor::Init() {$/;"	f	class:bustub::LimitExecutor
+Init	execution/mock_scan_executor.cpp	/^void MockScanExecutor::Init() {$/;"	f	class:bustub::MockScanExecutor
 Init	execution/nested_index_join_executor.cpp	/^void NestIndexJoinExecutor::Init() {}$/;"	f	class:bustub::NestIndexJoinExecutor
-Init	execution/nested_loop_join_executor.cpp	/^void NestedLoopJoinExecutor::Init() {}$/;"	f	class:bustub::NestedLoopJoinExecutor
-Init	execution/seq_scan_executor.cpp	/^void SeqScanExecutor::Init() {}$/;"	f	class:bustub::SeqScanExecutor
-Init	execution/update_executor.cpp	/^void UpdateExecutor::Init() {}$/;"	f	class:bustub::UpdateExecutor
+Init	execution/nested_loop_join_executor.cpp	/^void NestedLoopJoinExecutor::Init() {$/;"	f	class:bustub::NestedLoopJoinExecutor
+Init	execution/seq_scan_executor.cpp	/^void SeqScanExecutor::Init() {$/;"	f	class:bustub::SeqScanExecutor
+Init	execution/update_executor.cpp	/^void UpdateExecutor::Init() {$/;"	f	class:bustub::UpdateExecutor
 Init	include/storage/page/header_page.h	/^  void Init() { SetRecordCount(0); }$/;"	f	class:bustub::HeaderPage
 Init	include/storage/page/tmp_tuple_page.h	/^  void Init(page_id_t page_id, uint32_t page_size) {$/;"	f	class:bustub::TmpTuplePage
 Init	storage/page/b_plus_tree_internal_page.cpp	/^void B_PLUS_TREE_INTERNAL_PAGE_TYPE::Init(page_id_t page_id, page_id_t parent_id, int max_size) {}$/;"	f	class:bustub::B_PLUS_TREE_INTERNAL_PAGE_TYPE
@@ -303,6 +312,7 @@ IntegerParentType	include/type/integer_parent_type.h	/^class IntegerParentType :
 IntegerParentType	type/integer_parent_type.cpp	/^IntegerParentType::IntegerParentType(TypeId type) : NumericType(type) {}$/;"	f	class:bustub::IntegerParentType
 IntegerType	include/type/integer_type.h	/^class IntegerType : public IntegerParentType {$/;"	c	namespace:bustub
 IntegerType	type/integer_type.cpp	/^IntegerType::IntegerType(TypeId type) : IntegerParentType(type) {}$/;"	f	class:bustub::IntegerType
+IsSameSchema	execution/seq_scan_executor.cpp	/^bool SeqScanExecutor::IsSameSchema(const Schema *opt,const Schema *schema){$/;"	f	class:bustub::SeqScanExecutor
 IsolationLevel	include/concurrency/transaction.h	/^enum class IsolationLevel { READ_UNCOMMITTED, REPEATABLE_READ, READ_COMMITTED };$/;"	c	namespace:bustub
 Iterator	include/execution/executors/aggregation_executor.h	/^    explicit Iterator(std::unordered_map<AggregateKey, AggregateValue>::const_iterator iter) : iter_{iter} {}$/;"	f	class:bustub::SimpleAggregationHashTable::Iterator
 Iterator	include/execution/executors/aggregation_executor.h	/^  class Iterator {$/;"	c	class:bustub::SimpleAggregationHashTable
@@ -347,7 +357,7 @@ LOG_WARN	include/common/logger.h	116;"	d
 LOG_WARN	include/common/logger.h	122;"	d
 LOG_WARN_ENABLED	include/common/logger.h	111;"	d
 LOG_WARN_ENABLED	include/common/logger.h	114;"	d
-LRUReplacer	buffer/lru_replacer.cpp	/^LRUReplacer::LRUReplacer(size_t num_pages) {$/;"	f	class:bustub::LRUReplacer
+LRUReplacer	buffer/lru_replacer.cpp	/^LRUReplacer::LRUReplacer(size_t num_pages) { size_ = num_pages; }$/;"	f	class:bustub::LRUReplacer
 LRUReplacer	include/buffer/lru_replacer.h	/^class LRUReplacer : public Replacer {$/;"	c	namespace:bustub
 LessThan	include/execution/expressions/comparison_expression.h	/^enum class ComparisonType { Equal, NotEqual, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual };$/;"	m	class:bustub::ComparisonType
 LessThanOrEqual	include/execution/expressions/comparison_expression.h	/^enum class ComparisonType { Equal, NotEqual, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual };$/;"	m	class:bustub::ComparisonType
@@ -378,14 +388,20 @@ LogRecovery	include/recovery/log_recovery.h	/^class LogRecovery {$/;"	c	namespac
 MARKDELETE	include/recovery/log_record.h	/^  MARKDELETE,$/;"	m	class:bustub::LogRecordType
 MAX_READERS	include/common/rwlatch.h	/^  static const uint32_t MAX_READERS = UINT_MAX;$/;"	m	class:bustub::ReaderWriterLatch
 MISMATCH_TYPE	include/common/exception.h	/^  MISMATCH_TYPE = 5,$/;"	m	class:bustub::ExceptionType
+MakeDummyRID	execution/mock_scan_executor.cpp	/^RID MockScanExecutor::MakeDummyRID() const { return RID{0}; }$/;"	f	class:bustub::MockScanExecutor
+MakeDummyTuple	execution/mock_scan_executor.cpp	/^Tuple MockScanExecutor::MakeDummyTuple() const {$/;"	f	class:bustub::MockScanExecutor
 MappingType	include/storage/index/index_iterator.h	/^  auto operator*() -> const MappingType &;$/;"	m	class:bustub::IndexIterator
 MappingType	include/storage/page/b_plus_tree_leaf_page.h	/^  auto GetItem(int index) -> const MappingType &;$/;"	m	class:bustub::BPlusTreeLeafPage
 MappingType	include/storage/page/b_plus_tree_page.h	23;"	d
 MappingType	include/storage/page/hash_table_page_defs.h	15;"	d
 Matrix	include/primer/p0_starter.h	/^  Matrix(int rows, int cols) {}$/;"	f	class:bustub::Matrix
 Matrix	include/primer/p0_starter.h	/^class Matrix {$/;"	c	namespace:bustub
-Merge	container/hash/extendible_hash_table.cpp	/^void HASH_TABLE_TYPE::Merge(Transaction *transaction, const KeyType &key, const ValueType &value) {}$/;"	f	class:bustub::HASH_TABLE_TYPE
+Merge	container/hash/extendible_hash_table.cpp	/^void HASH_TABLE_TYPE::Merge(Transaction *transaction, const KeyType &key, const ValueType &value) {$/;"	f	class:bustub::HASH_TABLE_TYPE
 MinAggregate	include/execution/plans/aggregation_plan.h	/^enum class AggregationType { CountAggregate, SumAggregate, MinAggregate, MaxAggregate };$/;"	m	class:bustub::AggregationType
+MockScanExecutor	execution/mock_scan_executor.cpp	/^MockScanExecutor::MockScanExecutor(ExecutorContext *exec_ctx, const MockScanPlanNode *plan)$/;"	f	class:bustub::MockScanExecutor
+MockScanExecutor	include/execution/executors/mock_scan_executor.h	/^class MockScanExecutor : public AbstractExecutor {$/;"	c	namespace:bustub
+MockScanPlanNode	include/execution/plans/mock_scan_plan.h	/^  MockScanPlanNode(const Schema *output, std::size_t size)$/;"	f	class:bustub::MockScanPlanNode
+MockScanPlanNode	include/execution/plans/mock_scan_plan.h	/^class MockScanPlanNode : public AbstractPlanNode {$/;"	c	namespace:bustub
 MoveAllTo	storage/page/b_plus_tree_internal_page.cpp	/^void B_PLUS_TREE_INTERNAL_PAGE_TYPE::MoveAllTo(BPlusTreeInternalPage *recipient, const KeyType &middle_key,$/;"	f	class:bustub::B_PLUS_TREE_INTERNAL_PAGE_TYPE
 MoveAllTo	storage/page/b_plus_tree_leaf_page.cpp	/^void B_PLUS_TREE_LEAF_PAGE_TYPE::MoveAllTo(BPlusTreeLeafPage *recipient) {}$/;"	f	class:bustub::B_PLUS_TREE_LEAF_PAGE_TYPE
 MoveFirstToEndOf	storage/page/b_plus_tree_internal_page.cpp	/^void B_PLUS_TREE_INTERNAL_PAGE_TYPE::MoveFirstToEndOf(BPlusTreeInternalPage *recipient, const KeyType &middle_key,$/;"	f	class:bustub::B_PLUS_TREE_INTERNAL_PAGE_TYPE
@@ -407,6 +423,7 @@ NestedLoopJoinExecutor	execution/nested_loop_join_executor.cpp	/^NestedLoopJoinE
 NestedLoopJoinExecutor	include/execution/executors/nested_loop_join_executor.h	/^class NestedLoopJoinExecutor : public AbstractExecutor {$/;"	c	namespace:bustub
 NestedLoopJoinPlanNode	include/execution/plans/nested_loop_join_plan.h	/^  NestedLoopJoinPlanNode(const Schema *output_schema, std::vector<const AbstractPlanNode *> &&children,$/;"	f	class:bustub::NestedLoopJoinPlanNode
 NestedLoopJoinPlanNode	include/execution/plans/nested_loop_join_plan.h	/^class NestedLoopJoinPlanNode : public AbstractPlanNode {$/;"	c	namespace:bustub
+Next	execution/mock_scan_executor.cpp	/^bool MockScanExecutor::Next(Tuple *tuple, RID *rid) {$/;"	f	class:bustub::MockScanExecutor
 NotEqual	include/execution/expressions/comparison_expression.h	/^enum class ComparisonType { Equal, NotEqual, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual };$/;"	m	class:bustub::ComparisonType
 NotImplementedException	include/common/exception.h	/^  explicit NotImplementedException(const std::string &msg) : Exception(ExceptionType::NOT_IMPLEMENTED, msg) {}$/;"	f	class:bustub::NotImplementedException
 NotImplementedException	include/common/exception.h	/^class NotImplementedException : public Exception {$/;"	c	namespace:bustub
@@ -424,6 +441,7 @@ OFFSET_TUPLE_SIZE	include/storage/page/table_page.h	/^  static constexpr size_t 
 OUT_OF_MEMORY	include/common/exception.h	/^  OUT_OF_MEMORY = 9,$/;"	m	class:bustub::ExceptionType
 OUT_OF_RANGE	include/common/exception.h	/^  OUT_OF_RANGE = 1,$/;"	m	class:bustub::ExceptionType
 OutputLogHeader	include/common/logger.h	/^inline void OutputLogHeader(const char *file, int line, const char *func, int level) {$/;"	f	namespace:bustub
+OutputSchema	include/execution/plans/abstract_plan.h	/^  const Schema *OutputSchema() const { return output_schema_; }$/;"	f	class:bustub::AbstractPlanNode
 PAGE_SIZE	include/common/config.h	/^static constexpr int PAGE_SIZE = 4096;                                        \/\/ size of a data page in byte$/;"	m	namespace:bustub
 PRIME_FACTOR	include/common/util/hash_util.h	/^  static const hash_t PRIME_FACTOR = 10000019;$/;"	m	class:bustub::HashUtil
 Page	include/buffer/buffer_pool_manager.h	/^  virtual auto FetchPgImp(page_id_t page_id) -> Page * = 0;$/;"	m	class:bustub::BufferPoolManager
@@ -435,8 +453,8 @@ ParallelBufferPoolManager	buffer/parallel_buffer_pool_manager.cpp	/^ParallelBuff
 ParallelBufferPoolManager	include/buffer/parallel_buffer_pool_manager.h	/^class ParallelBufferPoolManager : public BufferPoolManager {$/;"	c	namespace:bustub
 Pin	buffer/clock_replacer.cpp	/^void ClockReplacer::Pin(frame_id_t frame_id) {}$/;"	f	class:bustub::ClockReplacer
 Pin	buffer/lru_replacer.cpp	/^void LRUReplacer::Pin(frame_id_t frame_id) {$/;"	f	class:bustub::LRUReplacer
-PlanType	include/execution/plans/abstract_plan.h	/^  virtual auto GetType() const -> PlanType = 0;$/;"	m	class:bustub::AbstractPlanNode
 PlanType	include/execution/plans/abstract_plan.h	/^enum class PlanType {$/;"	c	namespace:bustub
+PollCount	include/execution/plans/mock_scan_plan.h	/^  std::size_t PollCount() const { return poll_count_; }$/;"	f	class:bustub::MockScanPlanNode
 PopulateNewRoot	storage/page/b_plus_tree_internal_page.cpp	/^void B_PLUS_TREE_INTERNAL_PAGE_TYPE::PopulateNewRoot(const ValueType &old_value, const KeyType &new_key,$/;"	f	class:bustub::B_PLUS_TREE_INTERNAL_PAGE_TYPE
 Print	storage/index/b_plus_tree.cpp	/^void BPLUSTREE_TYPE::Print(BufferPoolManager *bpm) {$/;"	f	class:bustub::BPLUSTREE_TYPE
 PrintBucket	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::PrintBucket() {$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
@@ -460,7 +478,7 @@ ReleaseLocks	include/concurrency/transaction_manager.h	/^  void ReleaseLocks(Tra
 Remove	storage/index/b_plus_tree.cpp	/^void BPLUSTREE_TYPE::Remove(const KeyType &key, Transaction *transaction) {}$/;"	f	class:bustub::BPLUSTREE_TYPE
 Remove	storage/page/b_plus_tree_internal_page.cpp	/^void B_PLUS_TREE_INTERNAL_PAGE_TYPE::Remove(int index) {}$/;"	f	class:bustub::B_PLUS_TREE_INTERNAL_PAGE_TYPE
 Remove	storage/page/hash_table_block_page.cpp	/^void HASH_TABLE_BLOCK_TYPE::Remove(slot_offset_t bucket_ind) {}$/;"	f	class:bustub::HASH_TABLE_BLOCK_TYPE
-RemoveAt	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::RemoveAt(uint32_t bucket_idx) {}$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
+RemoveAt	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::RemoveAt(uint32_t bucket_idx) {$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
 RemoveFromFile	storage/index/b_plus_tree.cpp	/^void BPLUSTREE_TYPE::RemoveFromFile(const std::string &file_name, Transaction *transaction) {$/;"	f	class:bustub::BPLUSTREE_TYPE
 Replacer	include/buffer/replacer.h	/^class Replacer {$/;"	c	namespace:bustub
 ResetMemory	include/storage/page/page.h	/^  inline void ResetMemory() { memset(data_, OFFSET_PAGE_START, PAGE_SIZE); }$/;"	f	class:bustub::Page
@@ -487,7 +505,7 @@ Schema	catalog/schema.cpp	/^Schema::Schema(const std::vector<Column> &columns) :
 Schema	include/catalog/schema.h	/^class Schema {$/;"	c	namespace:bustub
 Schema	include/execution/executors/abstract_executor.h	/^  virtual auto GetOutputSchema() -> const Schema * = 0;$/;"	m	class:bustub::AbstractExecutor
 SeqScan	include/execution/plans/abstract_plan.h	/^  SeqScan,$/;"	m	class:bustub::PlanType
-SeqScanExecutor	execution/seq_scan_executor.cpp	/^SeqScanExecutor::SeqScanExecutor(ExecutorContext *exec_ctx, const SeqScanPlanNode *plan) : AbstractExecutor(exec_ctx) {}$/;"	f	class:bustub::SeqScanExecutor
+SeqScanExecutor	execution/seq_scan_executor.cpp	/^SeqScanExecutor::SeqScanExecutor(ExecutorContext *exec_ctx, const SeqScanPlanNode *plan) : AbstractExecutor(exec_ctx),plan_(plan),table_iter_(nullptr,RID(),nullptr) {$/;"	f	class:bustub::SeqScanExecutor
 SeqScanExecutor	include/execution/executors/seq_scan_executor.h	/^class SeqScanExecutor : public AbstractExecutor {$/;"	c	namespace:bustub
 SeqScanPlanNode	include/execution/plans/seq_scan_plan.h	/^  SeqScanPlanNode(const Schema *output, const AbstractExpression *predicate, table_oid_t table_oid)$/;"	f	class:bustub::SeqScanPlanNode
 SeqScanPlanNode	include/execution/plans/seq_scan_plan.h	/^class SeqScanPlanNode : public AbstractPlanNode {$/;"	c	namespace:bustub
@@ -504,7 +522,7 @@ SerializeTo	type/tinyint_type.cpp	/^void TinyintType::SerializeTo(const Value &v
 SerializeTo	type/type.cpp	/^void Type::SerializeTo(const Value &val __attribute__((unused)), char *storage __attribute__((unused))) const {$/;"	f	class:bustub::Type
 SerializeTo	type/varlen_type.cpp	/^void VarlenType::SerializeTo(const Value &val, char *storage) const {$/;"	f	class:bustub::VarlenType
 Set	include/common/rid.h	/^  inline void Set(page_id_t page_id, uint32_t slot_num) {$/;"	f	class:bustub::RID
-SetBucketPageId	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::SetBucketPageId(uint32_t bucket_idx, page_id_t bucket_page_id) {}$/;"	f	class:bustub::HashTableDirectoryPage
+SetBucketPageId	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::SetBucketPageId(uint32_t bucket_idx, page_id_t bucket_page_id) {$/;"	f	class:bustub::HashTableDirectoryPage
 SetFlushLogFuture	include/storage/disk/disk_manager.h	/^  inline void SetFlushLogFuture(std::future<void> *f) { flush_log_f_ = f; }$/;"	f	class:bustub::DiskManager
 SetFreeSpacePointer	include/storage/page/table_page.h	/^  void SetFreeSpacePointer(uint32_t free_space_pointer) {$/;"	f	class:bustub::TablePage
 SetFromInteger	include/storage/index/generic_key.h	/^  inline void SetFromInteger(int64_t key) {$/;"	f	class:bustub::GenericKey
@@ -514,11 +532,11 @@ SetLSN	include/storage/page/page.h	/^  inline void SetLSN(lsn_t lsn) { memcpy(Ge
 SetLSN	storage/page/b_plus_tree_page.cpp	/^void BPlusTreePage::SetLSN(lsn_t lsn) { lsn_ = lsn; }$/;"	f	class:bustub::BPlusTreePage
 SetLSN	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::SetLSN(lsn_t lsn) { lsn_ = lsn; }$/;"	f	class:bustub::HashTableDirectoryPage
 SetLSN	storage/page/hash_table_header_page.cpp	/^void HashTableHeaderPage::SetLSN(lsn_t lsn) {}$/;"	f	class:bustub::HashTableHeaderPage
-SetLocalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::SetLocalDepth(uint32_t bucket_idx, uint8_t local_depth) {}$/;"	f	class:bustub::HashTableDirectoryPage
+SetLocalDepth	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::SetLocalDepth(uint32_t bucket_idx, uint8_t local_depth) {$/;"	f	class:bustub::HashTableDirectoryPage
 SetMaxSize	storage/page/b_plus_tree_page.cpp	/^void BPlusTreePage::SetMaxSize(int size) {}$/;"	f	class:bustub::BPlusTreePage
 SetNextPageId	include/storage/page/table_page.h	/^  void SetNextPageId(page_id_t next_page_id) {$/;"	f	class:bustub::TablePage
 SetNextPageId	storage/page/b_plus_tree_leaf_page.cpp	/^void B_PLUS_TREE_LEAF_PAGE_TYPE::SetNextPageId(page_id_t next_page_id) {}$/;"	f	class:bustub::B_PLUS_TREE_LEAF_PAGE_TYPE
-SetOccupied	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::SetOccupied(uint32_t bucket_idx) {}$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
+SetOccupied	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::SetOccupied(uint32_t bucket_idx) {$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
 SetPageId	storage/page/b_plus_tree_page.cpp	/^void BPlusTreePage::SetPageId(page_id_t page_id) {}$/;"	f	class:bustub::BPlusTreePage
 SetPageId	storage/page/hash_table_directory_page.cpp	/^void HashTableDirectoryPage::SetPageId(bustub::page_id_t page_id) { page_id_ = page_id; }$/;"	f	class:bustub::HashTableDirectoryPage
 SetPageId	storage/page/hash_table_header_page.cpp	/^void HashTableHeaderPage::SetPageId(bustub::page_id_t page_id) {}$/;"	f	class:bustub::HashTableHeaderPage
@@ -527,7 +545,7 @@ SetParentPageId	storage/page/b_plus_tree_page.cpp	/^void BPlusTreePage::SetParen
 SetPersistentLSN	include/recovery/log_manager.h	/^  inline void SetPersistentLSN(lsn_t lsn) { persistent_lsn_ = lsn; }$/;"	f	class:bustub::LogManager
 SetPrevLSN	include/concurrency/transaction.h	/^  inline void SetPrevLSN(lsn_t prev_lsn) { prev_lsn_ = prev_lsn; }$/;"	f	class:bustub::Transaction
 SetPrevPageId	include/storage/page/table_page.h	/^  void SetPrevPageId(page_id_t prev_page_id) {$/;"	f	class:bustub::TablePage
-SetReadable	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::SetReadable(uint32_t bucket_idx) {}$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
+SetReadable	storage/page/hash_table_bucket_page.cpp	/^void HASH_TABLE_BUCKET_TYPE::SetReadable(uint32_t bucket_idx) {$/;"	f	class:bustub::HASH_TABLE_BUCKET_TYPE
 SetRecordCount	storage/page/header_page.cpp	/^void HeaderPage::SetRecordCount(int record_count) { memcpy(GetData(), &record_count, 4); }$/;"	f	class:bustub::HeaderPage
 SetSize	storage/page/b_plus_tree_page.cpp	/^void BPlusTreePage::SetSize(int size) {}$/;"	f	class:bustub::BPlusTreePage
 SetSize	storage/page/hash_table_header_page.cpp	/^void HashTableHeaderPage::SetSize(size_t size) {}$/;"	f	class:bustub::HashTableHeaderPage
@@ -696,6 +714,8 @@ agg_types_	include/execution/executors/aggregation_executor.h	/^  const std::vec
 agg_types_	include/execution/plans/aggregation_plan.h	/^  std::vector<AggregationType> agg_types_;$/;"	m	class:bustub::AggregationPlanNode
 aggregates_	include/execution/plans/aggregation_plan.h	/^  std::vector<Value> aggregates_;$/;"	m	struct:bustub::AggregateValue
 aggregates_	include/execution/plans/aggregation_plan.h	/^  std::vector<const AbstractExpression *> aggregates_;$/;"	m	class:bustub::AggregationPlanNode
+aht_	include/execution/executors/aggregation_executor.h	/^  SimpleAggregationHashTable aht_;$/;"	m	class:bustub::AggregationExecutor
+aht_iterator_	include/execution/executors/aggregation_executor.h	/^  SimpleAggregationHashTable::Iterator aht_iterator_;$/;"	m	class:bustub::AggregationExecutor
 array_	include/storage/page/b_plus_tree_internal_page.h	/^  MappingType array_[1];$/;"	m	class:bustub::BPlusTreeInternalPage
 array_	include/storage/page/b_plus_tree_leaf_page.h	/^  MappingType array_[1];$/;"	m	class:bustub::BPlusTreeLeafPage
 array_	include/storage/page/hash_table_block_page.h	/^  MappingType array_[1];$/;"	m	class:bustub::HashTableBlockPage
@@ -721,6 +741,7 @@ bool	include/container/hash/hash_table.h	/^  virtual auto GetValue(Transaction *
 bool	include/container/hash/hash_table.h	/^  virtual auto Insert(Transaction *transaction, const KeyType &key, const ValueType &value) -> bool = 0;$/;"	m	class:bustub::HashTable
 bool	include/container/hash/hash_table.h	/^  virtual auto Remove(Transaction *transaction, const KeyType &key, const ValueType &value) -> bool = 0;$/;"	m	class:bustub::HashTable
 bool	include/execution/executors/abstract_executor.h	/^  virtual auto Next(Tuple *tuple, RID *rid) -> bool = 0;$/;"	m	class:bustub::AbstractExecutor
+bool	include/execution/executors/seq_scan_executor.h	/^  auto IsSameSchema(const Schema *opt, const Schema *schema)->bool;$/;"	m	class:bustub::SeqScanExecutor
 bool	include/recovery/log_recovery.h	/^  auto DeserializeLogRecord(const char *data, LogRecord *log_record) -> bool;$/;"	m	class:bustub::LogRecovery
 bool	include/storage/disk/disk_manager.h	/^  auto GetFlushState() const -> bool;$/;"	m	class:bustub::DiskManager
 bool	include/storage/disk/disk_manager.h	/^  auto ReadLog(char *log_data, int size, int offset) -> bool;$/;"	m	class:bustub::DiskManager
@@ -804,6 +825,7 @@ bustub	execution/hash_join_executor.cpp	/^namespace bustub {$/;"	n	file:
 bustub	execution/index_scan_executor.cpp	/^namespace bustub {$/;"	n	file:
 bustub	execution/insert_executor.cpp	/^namespace bustub {$/;"	n	file:
 bustub	execution/limit_executor.cpp	/^namespace bustub {$/;"	n	file:
+bustub	execution/mock_scan_executor.cpp	/^namespace bustub {$/;"	n	file:
 bustub	execution/nested_index_join_executor.cpp	/^namespace bustub {$/;"	n	file:
 bustub	execution/nested_loop_join_executor.cpp	/^namespace bustub {$/;"	n	file:
 bustub	execution/seq_scan_executor.cpp	/^namespace bustub {$/;"	n	file:
@@ -841,10 +863,13 @@ bustub	include/execution/executors/abstract_executor.h	/^namespace bustub {$/;"	
 bustub	include/execution/executors/aggregation_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/delete_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/distinct_executor.h	/^namespace bustub {$/;"	n
+bustub	include/execution/executors/distinct_executor.h	/^namespace bustub{$/;"	n
 bustub	include/execution/executors/hash_join_executor.h	/^namespace bustub {$/;"	n
+bustub	include/execution/executors/hash_join_executor.h	/^namespace bustub{$/;"	n
 bustub	include/execution/executors/index_scan_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/insert_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/limit_executor.h	/^namespace bustub {$/;"	n
+bustub	include/execution/executors/mock_scan_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/nested_index_join_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/nested_loop_join_executor.h	/^namespace bustub {$/;"	n
 bustub	include/execution/executors/seq_scan_executor.h	/^namespace bustub {$/;"	n
@@ -862,6 +887,7 @@ bustub	include/execution/plans/hash_join_plan.h	/^namespace bustub {$/;"	n
 bustub	include/execution/plans/index_scan_plan.h	/^namespace bustub {$/;"	n
 bustub	include/execution/plans/insert_plan.h	/^namespace bustub {$/;"	n
 bustub	include/execution/plans/limit_plan.h	/^namespace bustub {$/;"	n
+bustub	include/execution/plans/mock_scan_plan.h	/^namespace bustub {$/;"	n
 bustub	include/execution/plans/nested_index_join_plan.h	/^namespace bustub {$/;"	n
 bustub	include/execution/plans/nested_loop_join_plan.h	/^namespace bustub {$/;"	n
 bustub	include/execution/plans/seq_scan_plan.h	/^namespace bustub {$/;"	n
@@ -948,10 +974,12 @@ bustub	type/varlen_type.cpp	/^namespace bustub {$/;"	n	file:
 catalog_	include/concurrency/transaction.h	/^  Catalog *catalog_;$/;"	m	class:bustub::IndexWriteRecord
 catalog_	include/execution/execution_engine.h	/^  [[maybe_unused]] Catalog *catalog_;$/;"	m	class:bustub::ExecutionEngine
 catalog_	include/execution/executor_context.h	/^  Catalog *catalog_;$/;"	m	class:bustub::ExecutorContext
+catalog_	include/execution/executors/nested_loop_join_executor.h	/^  Catalog *catalog_;$/;"	m	class:bustub::NestedLoopJoinExecutor
 checkpoint_manager_	include/common/bustub_instance.h	/^  CheckpointManager *checkpoint_manager_;$/;"	m	class:bustub::BustubInstance
 child_	include/execution/executors/aggregation_executor.h	/^  std::unique_ptr<AbstractExecutor> child_;$/;"	m	class:bustub::AggregationExecutor
 child_executor_	include/execution/executors/delete_executor.h	/^  std::unique_ptr<AbstractExecutor> child_executor_;$/;"	m	class:bustub::DeleteExecutor
 child_executor_	include/execution/executors/distinct_executor.h	/^  std::unique_ptr<AbstractExecutor> child_executor_;$/;"	m	class:bustub::DistinctExecutor
+child_executor_	include/execution/executors/insert_executor.h	/^  std::unique_ptr<AbstractExecutor> child_executor_;$/;"	m	class:bustub::InsertExecutor
 child_executor_	include/execution/executors/limit_executor.h	/^  std::unique_ptr<AbstractExecutor> child_executor_;$/;"	m	class:bustub::LimitExecutor
 child_executor_	include/execution/executors/update_executor.h	/^  std::unique_ptr<AbstractExecutor> child_executor_;$/;"	m	class:bustub::UpdateExecutor
 children_	include/execution/expressions/abstract_expression.h	/^  std::vector<const AbstractExpression *> children_;$/;"	m	class:bustub::AbstractExpression
@@ -974,10 +1002,11 @@ const_varlen_	include/type/value.h	/^    const char *const_varlen_;$/;"	m	union:
 container_	include/storage/index/b_plus_tree_index.h	/^  BPlusTree<KeyType, ValueType, KeyComparator> container_;$/;"	m	class:bustub::BPlusTreeIndex
 container_	include/storage/index/extendible_hash_table_index.h	/^  ExtendibleHashTable<KeyType, ValueType, KeyComparator> container_;$/;"	m	class:bustub::ExtendibleHashTableIndex
 container_	include/storage/index/linear_probe_hash_table_index.h	/^  LinearProbeHashTable<KeyType, ValueType, KeyComparator> container_;$/;"	m	class:bustub::LinearProbeHashTableIndex
+cursor_	include/execution/executors/mock_scan_executor.h	/^  std::size_t cursor_;$/;"	m	class:bustub::MockScanExecutor
 cv_	include/concurrency/lock_manager.h	/^    std::condition_variable cv_;$/;"	m	class:bustub::LockManager::LockRequestQueue
 cv_	include/recovery/log_manager.h	/^  std::condition_variable cv_;$/;"	m	class:bustub::LogManager
 cycle_detection_interval	common/config.cpp	/^std::chrono::milliseconds cycle_detection_interval = std::chrono::milliseconds(50);$/;"	m	namespace:bustub	file:
-data	include/buffer/lru_replacer.h	/^  std::list<frame_id_t> data;$/;"	m	class:bustub::LRUReplacer
+data_	include/buffer/lru_replacer.h	/^  std::list<frame_id_t> data_;$/;"	m	class:bustub::LRUReplacer
 data_	include/primer/p0_starter.h	/^  T **data_;$/;"	m	class:bustub::RowMatrix
 data_	include/storage/index/generic_key.h	/^  char data_[KeySize];$/;"	m	class:bustub::GenericKey
 db_io_	include/storage/disk/disk_manager.h	/^  std::fstream db_io_;$/;"	m	class:bustub::DiskManager
@@ -999,6 +1028,8 @@ exec_ctx_	include/execution/executors/abstract_executor.h	/^  ExecutorContext *e
 expr_	include/catalog/column.h	/^  const AbstractExpression *expr_;$/;"	m	class:bustub::Column
 file_name_	include/storage/disk/disk_manager.h	/^  std::string file_name_;$/;"	m	class:bustub::DiskManager
 fixed_length_	include/catalog/column.h	/^  uint32_t fixed_length_;$/;"	m	class:bustub::Column
+flag_	include/execution/executors/hash_join_executor.h	/^  bool flag_;$/;"	m	class:bustub::HashJoinExecutor
+flag_	include/execution/executors/nested_loop_join_executor.h	/^  bool flag_;$/;"	m	class:bustub::NestedLoopJoinExecutor
 flush_buffer_	include/recovery/log_manager.h	/^  char *flush_buffer_;$/;"	m	class:bustub::LogManager
 flush_log_	include/storage/disk/disk_manager.h	/^  bool flush_log_;$/;"	m	class:bustub::DiskManager
 flush_log_f_	include/storage/disk/disk_manager.h	/^  std::future<void> *flush_log_f_;$/;"	m	class:bustub::DiskManager
@@ -1008,10 +1039,16 @@ global_txn_latch_	include/concurrency/transaction_manager.h	/^  ReaderWriterLatc
 granted_	include/concurrency/lock_manager.h	/^    bool granted_;$/;"	m	class:bustub::LockManager::LockRequest
 group_bys_	include/execution/plans/aggregation_plan.h	/^  std::vector<Value> group_bys_;$/;"	m	struct:bustub::AggregateKey
 group_bys_	include/execution/plans/aggregation_plan.h	/^  std::vector<const AbstractExpression *> group_bys_;$/;"	m	class:bustub::AggregationPlanNode
+h_map_	include/execution/executors/hash_join_executor.h	/^  std:: unordered_map<hash_join_key,std::vector<Tuple>> h_map_;$/;"	m	class:bustub::HashJoinExecutor
+h_set_	include/execution/executors/distinct_executor.h	/^  std:: unordered_set<hash_key> h_set_;$/;"	m	class:bustub::DistinctExecutor
 hash	include/common/rid.h	/^struct hash<bustub::RID> {$/;"	s	namespace:std
+hash	include/execution/executors/distinct_executor.h	/^struct hash<bustub::hash_key> {$/;"	s	namespace:std
+hash	include/execution/executors/hash_join_executor.h	/^struct hash<bustub::hash_join_key> {$/;"	s	namespace:std
 hash	include/execution/plans/aggregation_plan.h	/^struct hash<bustub::AggregateKey> {$/;"	s	namespace:std
 hash_fn_	include/container/hash/extendible_hash_table.h	/^  HashFunction<KeyType> hash_fn_;$/;"	m	class:bustub::ExtendibleHashTable
 hash_fn_	include/container/hash/linear_probe_hash_table.h	/^  HashFunction<KeyType> hash_fn_;$/;"	m	class:bustub::LinearProbeHashTable
+hash_join_key	include/execution/executors/hash_join_executor.h	/^  struct hash_join_key {$/;"	s	namespace:bustub
+hash_key	include/execution/executors/distinct_executor.h	/^  struct hash_key {$/;"	s	namespace:bustub
 having_	include/execution/plans/aggregation_plan.h	/^  const AbstractExpression *having_;$/;"	m	class:bustub::AggregationPlanNode
 header_page_id_	include/container/hash/linear_probe_hash_table.h	/^  page_id_t header_page_id_;$/;"	m	class:bustub::LinearProbeHashTable
 index_	include/catalog/catalog.h	/^  std::unique_ptr<Index> index_;$/;"	m	struct:bustub::IndexInfo
@@ -1024,6 +1061,7 @@ index_oid_	include/execution/plans/index_scan_plan.h	/^      : AbstractPlanNode(
 index_oid_	include/execution/plans/index_scan_plan.h	/^  index_oid_t index_oid_;$/;"	m	class:bustub::IndexScanPlanNode
 index_write_set_	include/concurrency/transaction.h	/^  std::shared_ptr<std::deque<IndexWriteRecord>> index_write_set_;$/;"	m	class:bustub::Transaction
 indexes_	include/catalog/catalog.h	/^  std::unordered_map<index_oid_t, std::unique_ptr<IndexInfo>> indexes_;$/;"	m	class:bustub::Catalog
+indexes_	include/execution/executors/insert_executor.h	/^  std::vector<IndexInfo*> indexes_;$/;"	m	class:bustub::InsertExecutor
 inner_table_oid_	include/execution/plans/nested_index_join_plan.h	/^  table_oid_t inner_table_oid_;$/;"	m	class:bustub::NestedIndexJoinPlanNode
 inner_table_schema_	include/execution/plans/nested_index_join_plan.h	/^  const Schema *inner_table_schema_;$/;"	m	class:bustub::NestedIndexJoinPlanNode
 insert_rid_	include/recovery/log_record.h	/^  RID insert_rid_;$/;"	m	class:bustub::LogRecord
@@ -1033,6 +1071,7 @@ integer_	include/type/value.h	/^    int32_t integer_;$/;"	m	union:bustub::Value:
 internal_max_size_	include/storage/index/b_plus_tree.h	/^  int internal_max_size_;$/;"	m	class:bustub::BPlusTree
 is_dirty_	include/storage/page/page.h	/^  bool is_dirty_ = false;$/;"	m	class:bustub::Page
 is_group_by_term_	include/execution/expressions/aggregate_value_expression.h	/^  bool is_group_by_term_;$/;"	m	class:bustub::AggregateValueExpression
+is_same_schema_	include/execution/executors/seq_scan_executor.h	/^  bool is_same_schema_; $/;"	m	class:bustub::SeqScanExecutor
 isolation_level_	include/concurrency/transaction.h	/^  IsolationLevel isolation_level_;$/;"	m	class:bustub::Transaction
 iter_	include/execution/executors/aggregation_executor.h	/^    std::unordered_map<AggregateKey, AggregateValue>::const_iterator iter_;$/;"	m	class:bustub::SimpleAggregationHashTable::Iterator
 k_types	include/type/type.h	/^  static Type *k_types[14];$/;"	m	class:bustub::CmpBool::Type
@@ -1042,16 +1081,26 @@ key_schema_	include/catalog/catalog.h	/^  Schema key_schema_;$/;"	m	struct:bustu
 key_schema_	include/storage/index/generic_key.h	/^  Schema *key_schema_;$/;"	m	class:bustub::GenericComparator
 key_schema_	include/storage/index/index.h	/^  Schema *key_schema_;$/;"	m	class:bustub::IndexMetadata
 key_size_	include/catalog/catalog.h	/^  const size_t key_size_;$/;"	m	struct:bustub::IndexInfo
+keys_	include/execution/executors/distinct_executor.h	/^	  std::vector<Value> keys_;$/;"	m	struct:bustub::hash_key
+keys_	include/execution/executors/hash_join_executor.h	/^	Value keys_;$/;"	m	struct:bustub::hash_join_key
+l_schema_	include/execution/executors/hash_join_executor.h	/^  const Schema * l_schema_;$/;"	m	class:bustub::HashJoinExecutor
 latch_	include/buffer/buffer_pool_manager_instance.h	/^  std::mutex latch_;$/;"	m	class:bustub::BufferPoolManagerInstance
 latch_	include/concurrency/lock_manager.h	/^  std::mutex latch_;$/;"	m	class:bustub::LockManager
 latch_	include/recovery/log_manager.h	/^  std::mutex latch_;$/;"	m	class:bustub::LogManager
 leaf_max_size_	include/storage/index/b_plus_tree.h	/^  int leaf_max_size_;$/;"	m	class:bustub::BPlusTree
+left_child_	include/execution/executors/hash_join_executor.h	/^  std::unique_ptr<AbstractExecutor> left_child_;$/;"	m	class:bustub::HashJoinExecutor
+left_executor_	include/execution/executors/nested_loop_join_executor.h	/^  std::unique_ptr<AbstractExecutor> left_executor_;$/;"	m	class:bustub::NestedLoopJoinExecutor
 left_key_expression_	include/execution/plans/hash_join_plan.h	/^  const AbstractExpression *left_key_expression_;$/;"	m	class:bustub::HashJoinPlanNode
+left_plan_	include/execution/executors/nested_loop_join_executor.h	/^  const AbstractPlanNode *left_plan_;$/;"	m	class:bustub::NestedLoopJoinExecutor
+left_rid_	include/execution/executors/nested_loop_join_executor.h	/^  RID left_rid_;$/;"	m	class:bustub::NestedLoopJoinExecutor
+left_tuple_	include/execution/executors/nested_loop_join_executor.h	/^  Tuple left_tuple_;$/;"	m	class:bustub::NestedLoopJoinExecutor
 len_	include/type/value.h	/^    uint32_t len_;$/;"	m	union:bustub::Value::__anon1
 length_	include/catalog/schema.h	/^  uint32_t length_;$/;"	m	class:bustub::Schema
+limit_	include/execution/executors/limit_executor.h	/^  size_t limit_;$/;"	m	class:bustub::LimitExecutor
 limit_	include/execution/plans/limit_plan.h	/^  std::size_t limit_;$/;"	m	class:bustub::LimitPlanNode
 linear_	include/primer/p0_starter.h	/^  T *linear_;$/;"	m	class:bustub::Matrix
 local_depths_	include/storage/page/hash_table_directory_page.h	/^  uint8_t local_depths_[DIRECTORY_ARRAY_SIZE];$/;"	m	class:bustub::HashTableDirectoryPage
+lock_	include/buffer/lru_replacer.h	/^  std::mutex lock_;$/;"	m	class:bustub::LRUReplacer
 lock_manager_	include/catalog/catalog.h	/^  [[maybe_unused]] LockManager *lock_manager_;$/;"	m	class:bustub::Catalog
 lock_manager_	include/common/bustub_instance.h	/^  LockManager *lock_manager_;$/;"	m	class:bustub::BustubInstance
 lock_manager_	include/concurrency/transaction_manager.h	/^  LockManager *lock_manager_ __attribute__((__unused__));$/;"	m	class:bustub::TransactionManager
@@ -1079,6 +1128,7 @@ lsn_t	include/recovery/log_manager.h	/^  auto AppendLogRecord(LogRecord *log_rec
 lsn_t	include/storage/page/hash_table_directory_page.h	/^  auto GetLSN() const -> lsn_t;$/;"	m	class:bustub::HashTableDirectoryPage
 lsn_t	include/storage/page/hash_table_header_page.h	/^  auto GetLSN() const -> lsn_t;$/;"	m	class:bustub::HashTableHeaderPage
 manage_data_	include/type/value.h	/^  bool manage_data_;$/;"	m	class:bustub::Value
+maps_	include/buffer/lru_replacer.h	/^  std::unordered_map<frame_id_t, std::list<frame_id_t>::iterator> maps_;$/;"	m	class:bustub::LRUReplacer
 max_	include/catalog/table_generator.h	/^    uint64_t max_;$/;"	m	struct:bustub::TableGenerator::ColumnInsertMeta
 max_size_	include/storage/page/b_plus_tree_page.h	/^  int max_size_ __attribute__((__unused__));$/;"	m	class:bustub::BPlusTreePage
 metadata_	include/storage/index/index.h	/^  std::unique_ptr<IndexMetadata> metadata_;$/;"	m	class:bustub::Index
@@ -1099,9 +1149,9 @@ num_flushes_	include/storage/disk/disk_manager.h	/^  int num_flushes_;$/;"	m	cla
 num_instances_	include/buffer/buffer_pool_manager_instance.h	/^  const uint32_t num_instances_ = 1;$/;"	m	class:bustub::BufferPoolManagerInstance
 num_rows_	include/catalog/table_generator.h	/^    uint32_t num_rows_;$/;"	m	struct:bustub::TableGenerator::TableInsertMeta
 num_writes_	include/storage/disk/disk_manager.h	/^  int num_writes_;$/;"	m	class:bustub::DiskManager
-nums	include/buffer/parallel_buffer_pool_manager.h	/^  uint32_t nums;$/;"	m	class:bustub::ParallelBufferPoolManager
+nums_	include/buffer/parallel_buffer_pool_manager.h	/^  uint32_t nums_;$/;"	m	class:bustub::ParallelBufferPoolManager
 occupied_	include/storage/page/hash_table_block_page.h	/^  std::atomic_char occupied_[(BLOCK_ARRAY_SIZE - 1) \/ 8 + 1];$/;"	m	class:bustub::HashTableBlockPage
-occupied_	include/storage/page/hash_table_bucket_page.h	/^  char occupied_[(BUCKET_ARRAY_SIZE - 1) \/ 8 + 1];$/;"	m	class:bustub::HashTableBucketPage
+occupied_	include/storage/page/hash_table_bucket_page.h	/^  unsigned char occupied_[(BUCKET_ARRAY_SIZE - 1) \/ 8 + 1];$/;"	m	class:bustub::HashTableBucketPage
 offset_	include/recovery/log_recovery.h	/^  int offset_ __attribute__((__unused__));$/;"	m	class:bustub::LogRecovery
 offset_	include/storage/table/tmp_tuple.h	/^  size_t offset_;$/;"	m	class:bustub::TmpTuple
 oid_	include/catalog/catalog.h	/^  const table_oid_t oid_;$/;"	m	struct:bustub::TableInfo
@@ -1151,6 +1201,8 @@ override	include/execution/executors/insert_executor.h	/^  auto Next([[maybe_unu
 override	include/execution/executors/insert_executor.h	/^  void Init() override;$/;"	m	class:bustub::InsertExecutor
 override	include/execution/executors/limit_executor.h	/^  auto Next(Tuple *tuple, RID *rid) -> bool override;$/;"	m	class:bustub::LimitExecutor
 override	include/execution/executors/limit_executor.h	/^  void Init() override;$/;"	m	class:bustub::LimitExecutor
+override	include/execution/executors/mock_scan_executor.h	/^  bool Next(Tuple *tuple, RID *rid) override;$/;"	m	class:bustub::MockScanExecutor
+override	include/execution/executors/mock_scan_executor.h	/^  void Init() override;$/;"	m	class:bustub::MockScanExecutor
 override	include/execution/executors/nested_index_join_executor.h	/^  auto Next(Tuple *tuple, RID *rid) -> bool override;$/;"	m	class:bustub::NestIndexJoinExecutor
 override	include/execution/executors/nested_index_join_executor.h	/^  void Init() override;$/;"	m	class:bustub::NestIndexJoinExecutor
 override	include/execution/executors/nested_loop_join_executor.h	/^  auto Next(Tuple *tuple, RID *rid) -> bool override;$/;"	m	class:bustub::NestedLoopJoinExecutor
@@ -1353,6 +1405,7 @@ page_id_	include/storage/page/hash_table_header_page.h	/^  __attribute__((unused
 page_id_	include/storage/page/page.h	/^  page_id_t page_id_ = INVALID_PAGE_ID;$/;"	m	class:bustub::Page
 page_id_	include/storage/table/tmp_tuple.h	/^  page_id_t page_id_;$/;"	m	class:bustub::TmpTuple
 page_id_t	include/buffer/buffer_pool_manager_instance.h	/^  auto AllocatePage() -> page_id_t;$/;"	m	class:bustub::BufferPoolManagerInstance
+page_id_t	include/container/hash/extendible_hash_table.h	/^  inline auto KeyToPageId(KeyType key, HashTableDirectoryPage *dir_page) -> page_id_t;$/;"	m	class:bustub::ExtendibleHashTable
 page_id_t	include/storage/page/b_plus_tree_leaf_page.h	/^  auto GetNextPageId() const -> page_id_t;$/;"	m	class:bustub::BPlusTreeLeafPage
 page_id_t	include/storage/page/b_plus_tree_page.h	/^  auto GetPageId() const -> page_id_t;$/;"	m	class:bustub::BPlusTreePage
 page_id_t	include/storage/page/b_plus_tree_page.h	/^  auto GetParentPageId() const -> page_id_t;$/;"	m	class:bustub::BPlusTreePage
@@ -1374,11 +1427,13 @@ plan_	include/execution/executors/hash_join_executor.h	/^  const HashJoinPlanNod
 plan_	include/execution/executors/index_scan_executor.h	/^  const IndexScanPlanNode *plan_;$/;"	m	class:bustub::IndexScanExecutor
 plan_	include/execution/executors/insert_executor.h	/^  const InsertPlanNode *plan_;$/;"	m	class:bustub::InsertExecutor
 plan_	include/execution/executors/limit_executor.h	/^  const LimitPlanNode *plan_;$/;"	m	class:bustub::LimitExecutor
+plan_	include/execution/executors/mock_scan_executor.h	/^  const MockScanPlanNode *plan_;$/;"	m	class:bustub::MockScanExecutor
 plan_	include/execution/executors/nested_index_join_executor.h	/^  const NestedIndexJoinPlanNode *plan_;$/;"	m	class:bustub::NestIndexJoinExecutor
 plan_	include/execution/executors/nested_loop_join_executor.h	/^  const NestedLoopJoinPlanNode *plan_;$/;"	m	class:bustub::NestedLoopJoinExecutor
 plan_	include/execution/executors/seq_scan_executor.h	/^  const SeqScanPlanNode *plan_;$/;"	m	class:bustub::SeqScanExecutor
 plan_	include/execution/executors/update_executor.h	/^  const UpdatePlanNode *plan_;$/;"	m	class:bustub::UpdateExecutor
-pool_	include/buffer/parallel_buffer_pool_manager.h	/^  std::vector<BufferPoolManager*> pool_;$/;"	m	class:bustub::ParallelBufferPoolManager
+poll_count_	include/execution/plans/mock_scan_plan.h	/^  mutable std::size_t poll_count_;$/;"	m	class:bustub::MockScanPlanNode
+pool_	include/buffer/parallel_buffer_pool_manager.h	/^  std::vector<BufferPoolManager *> pool_;$/;"	m	class:bustub::ParallelBufferPoolManager
 pool_size_	include/buffer/buffer_pool_manager_instance.h	/^  const size_t pool_size_;$/;"	m	class:bustub::BufferPoolManagerInstance
 predicate_	include/execution/plans/index_scan_plan.h	/^  const AbstractExpression *predicate_;$/;"	m	class:bustub::IndexScanPlanNode
 predicate_	include/execution/plans/nested_index_join_plan.h	/^  const AbstractExpression *predicate_;$/;"	m	class:bustub::NestedIndexJoinPlanNode
@@ -1387,20 +1442,26 @@ predicate_	include/execution/plans/seq_scan_plan.h	/^  const AbstractExpression 
 prev_lsn_	include/concurrency/transaction.h	/^  lsn_t prev_lsn_;$/;"	m	class:bustub::Transaction
 raw_values_	include/execution/plans/insert_plan.h	/^  std::vector<std::vector<Value>> raw_values_;$/;"	m	class:bustub::InsertPlanNode
 readable_	include/storage/page/hash_table_block_page.h	/^  std::atomic_char readable_[(BLOCK_ARRAY_SIZE - 1) \/ 8 + 1];$/;"	m	class:bustub::HashTableBlockPage
-readable_	include/storage/page/hash_table_bucket_page.h	/^  char readable_[(BUCKET_ARRAY_SIZE - 1) \/ 8 + 1];$/;"	m	class:bustub::HashTableBucketPage
+readable_	include/storage/page/hash_table_bucket_page.h	/^  unsigned char readable_[(BUCKET_ARRAY_SIZE - 1) \/ 8 + 1];$/;"	m	class:bustub::HashTableBucketPage
 reader_	include/common/rwlatch.h	/^  cond_t reader_;$/;"	m	class:bustub::ReaderWriterLatch
 replacer_	include/buffer/buffer_pool_manager_instance.h	/^  Replacer *replacer_;$/;"	m	class:bustub::BufferPoolManagerInstance
 request_queue_	include/concurrency/lock_manager.h	/^    std::list<LockRequest> request_queue_;$/;"	m	class:bustub::LockManager::LockRequestQueue
 ret_type_	include/execution/expressions/abstract_expression.h	/^  TypeId ret_type_;$/;"	m	class:bustub::AbstractExpression
 rid_	include/concurrency/transaction.h	/^  RID rid_;$/;"	m	class:bustub::IndexWriteRecord
 rid_	include/concurrency/transaction.h	/^  RID rid_;$/;"	m	class:bustub::TableWriteRecord
+right_child_	include/execution/executors/hash_join_executor.h	/^  std::unique_ptr<AbstractExecutor> right_child_;$/;"	m	class:bustub::HashJoinExecutor
+right_executor_	include/execution/executors/nested_loop_join_executor.h	/^  std::unique_ptr<AbstractExecutor> right_executor_;$/;"	m	class:bustub::NestedLoopJoinExecutor
 right_key_expression_	include/execution/plans/hash_join_plan.h	/^  const AbstractExpression *right_key_expression_;$/;"	m	class:bustub::HashJoinPlanNode
+right_plan_	include/execution/executors/nested_loop_join_executor.h	/^  const AbstractPlanNode *right_plan_;$/;"	m	class:bustub::NestedLoopJoinExecutor
+right_rid_	include/execution/executors/hash_join_executor.h	/^  RID right_rid_;$/;"	m	class:bustub::HashJoinExecutor
+right_tuple_	include/execution/executors/hash_join_executor.h	/^  Tuple right_tuple_;$/;"	m	class:bustub::HashJoinExecutor
 root_page_id_	include/storage/index/b_plus_tree.h	/^  page_id_t root_page_id_;$/;"	m	class:bustub::BPlusTree
 rows_	include/primer/p0_starter.h	/^  int rows_;$/;"	m	class:bustub::Matrix
 rwlatch_	include/storage/page/page.h	/^  ReaderWriterLatch rwlatch_;$/;"	m	class:bustub::Page
 schema_	include/catalog/catalog.h	/^  Schema schema_;$/;"	m	struct:bustub::TableInfo
 shared_lock_set_	include/concurrency/transaction.h	/^  std::shared_ptr<std::unordered_set<RID>> shared_lock_set_;$/;"	m	class:bustub::Transaction
-size	include/buffer/lru_replacer.h	/^  size_t size;$/;"	m	class:bustub::LRUReplacer
+size_	include/buffer/lru_replacer.h	/^  size_t size_;$/;"	m	class:bustub::LRUReplacer
+size_	include/execution/plans/mock_scan_plan.h	/^  const std::size_t size_;$/;"	m	class:bustub::MockScanPlanNode
 size_	include/storage/page/b_plus_tree_page.h	/^  int size_ __attribute__((__unused__));$/;"	m	class:bustub::BPlusTreePage
 size_	include/storage/page/hash_table_header_page.h	/^  __attribute__((unused)) size_t size_;$/;"	m	class:bustub::HashTableHeaderPage
 size_	include/type/value.h	/^  } size_;$/;"	m	class:bustub::Value	typeref:union:bustub::Value::__anon1
@@ -1409,10 +1470,13 @@ size_t	include/buffer/replacer.h	/^  virtual auto Size() -> size_t = 0;$/;"	m	cl
 size_t	include/container/hash/linear_probe_hash_table.h	/^  auto GetSize() -> size_t;$/;"	m	class:bustub::LinearProbeHashTable
 size_t	include/storage/page/hash_table_header_page.h	/^  auto GetSize() const -> size_t;$/;"	m	class:bustub::HashTableHeaderPage
 size_t	include/storage/page/hash_table_header_page.h	/^  auto NumBlocks() -> size_t;$/;"	m	class:bustub::HashTableHeaderPage
-sizes	include/buffer/parallel_buffer_pool_manager.h	/^  uint32_t sizes;$/;"	m	class:bustub::ParallelBufferPoolManager
+sizes_	include/buffer/parallel_buffer_pool_manager.h	/^  uint32_t sizes_;$/;"	m	class:bustub::ParallelBufferPoolManager
 smallint_	include/type/value.h	/^    int16_t smallint_;$/;"	m	union:bustub::Value::Val
+start_	include/buffer/parallel_buffer_pool_manager.h	/^  size_t start_ = 0;$/;"	m	class:bustub::ParallelBufferPoolManager
 state_	include/concurrency/transaction.h	/^  TransactionState state_;$/;"	m	class:bustub::Transaction
 std	include/common/rid.h	/^namespace std {$/;"	n
+std	include/execution/executors/distinct_executor.h	/^namespace std {$/;"	n
+std	include/execution/executors/hash_join_executor.h	/^namespace std {$/;"	n
 std	include/execution/plans/aggregation_plan.h	/^namespace std {$/;"	n
 string	include/catalog/column.h	/^  auto ToString() const -> std::string;$/;"	m	class:bustub::Column::std
 string	include/catalog/schema.h	/^  auto ToString() const -> std::string;$/;"	m	class:bustub::Schema::std
@@ -1432,7 +1496,10 @@ string	include/type/type.h	/^  virtual auto ToString(const Value &val) const -> 
 table_	include/catalog/catalog.h	/^  std::unique_ptr<TableHeap> table_;$/;"	m	struct:bustub::TableInfo
 table_	include/concurrency/transaction.h	/^  TableHeap *table_;$/;"	m	class:bustub::TableWriteRecord
 table_heap_	include/storage/table/table_iterator.h	/^  TableHeap *table_heap_;$/;"	m	class:bustub::TableIterator
+table_info_	include/execution/executors/delete_executor.h	/^  TableInfo *table_info_;$/;"	m	class:bustub::DeleteExecutor
+table_info_	include/execution/executors/seq_scan_executor.h	/^  TableInfo *table_info_;$/;"	m	class:bustub::SeqScanExecutor
 table_info_	include/execution/executors/update_executor.h	/^  const TableInfo *table_info_;$/;"	m	class:bustub::UpdateExecutor
+table_iter_	include/execution/executors/seq_scan_executor.h	/^  TableIterator table_iter_;$/;"	m	class:bustub::SeqScanExecutor
 table_latch_	include/container/hash/extendible_hash_table.h	/^  ReaderWriterLatch table_latch_;$/;"	m	class:bustub::ExtendibleHashTable
 table_latch_	include/container/hash/linear_probe_hash_table.h	/^  ReaderWriterLatch table_latch_;$/;"	m	class:bustub::LinearProbeHashTable
 table_name_	include/catalog/catalog.h	/^  std::string table_name_;$/;"	m	struct:bustub::IndexInfo
@@ -1445,6 +1512,7 @@ table_oid_	include/execution/plans/seq_scan_plan.h	/^  table_oid_t table_oid_;$/
 table_oid_	include/execution/plans/update_plan.h	/^  table_oid_t table_oid_;$/;"	m	class:bustub::UpdatePlanNode
 table_write_set_	include/concurrency/transaction.h	/^  std::shared_ptr<std::deque<TableWriteRecord>> table_write_set_;$/;"	m	class:bustub::Transaction
 tables_	include/catalog/catalog.h	/^  std::unordered_map<table_oid_t, std::unique_ptr<TableInfo>> tables_;$/;"	m	class:bustub::Catalog
+tb_info_	include/execution/executors/insert_executor.h	/^  TableInfo* tb_info_;$/;"	m	class:bustub::InsertExecutor
 term_idx_	include/execution/expressions/aggregate_value_expression.h	/^  uint32_t term_idx_;$/;"	m	class:bustub::AggregateValueExpression
 thread_id_	include/concurrency/transaction.h	/^  std::thread::id thread_id_;$/;"	m	class:bustub::Transaction
 timestamp_	include/type/value.h	/^    uint64_t timestamp_;$/;"	m	union:bustub::Value::Val
@@ -1475,7 +1543,6 @@ type_id_	include/type/value.h	/^  TypeId type_id_;$/;"	m	class:bustub::Value
 uint32_t	include/container/hash/extendible_hash_table.h	/^  auto GetGlobalDepth() -> uint32_t;$/;"	m	class:bustub::ExtendibleHashTable
 uint32_t	include/container/hash/extendible_hash_table.h	/^  inline auto Hash(KeyType key) -> uint32_t;$/;"	m	class:bustub::ExtendibleHashTable
 uint32_t	include/container/hash/extendible_hash_table.h	/^  inline auto KeyToDirectoryIndex(KeyType key, HashTableDirectoryPage *dir_page) -> uint32_t;$/;"	m	class:bustub::ExtendibleHashTable
-uint32_t	include/container/hash/extendible_hash_table.h	/^  inline auto KeyToPageId(KeyType key, HashTableDirectoryPage *dir_page) -> uint32_t;$/;"	m	class:bustub::ExtendibleHashTable
 uint32_t	include/storage/page/hash_table_block_page.h	/^  auto NumReadable() -> uint32_t;$/;"	m	class:bustub::HashTableBlockPage
 uint32_t	include/storage/page/hash_table_bucket_page.h	/^  auto NumReadable() -> uint32_t;$/;"	m	class:bustub::HashTableBucketPage
 uint32_t	include/storage/page/hash_table_directory_page.h	/^  auto GetGlobalDepth() -> uint32_t;$/;"	m	class:bustub::HashTableDirectoryPage
@@ -1495,6 +1562,7 @@ update_val_	include/execution/plans/update_plan.h	/^  int update_val_;$/;"	m	str
 upgrading_	include/concurrency/lock_manager.h	/^    txn_id_t upgrading_ = INVALID_TXN_ID;$/;"	m	class:bustub::LockManager::LockRequestQueue
 val_	include/execution/expressions/constant_value_expression.h	/^  Value val_;$/;"	m	class:bustub::ConstantValueExpression
 value_	include/type/value.h	/^  } value_;$/;"	m	class:bustub::Value	typeref:union:bustub::Value::Val
+value_iter_	include/execution/executors/insert_executor.h	/^  std::vector<std::vector<Value>>::const_iterator value_iter_;$/;"	m	class:bustub::InsertExecutor
 varlen_	include/type/value.h	/^    char *varlen_;$/;"	m	union:bustub::Value::Val
 vector	include/catalog/table_generator.h	/^  auto GenNumericValues(ColumnInsertMeta *col_meta, uint32_t count) -> std::vector<Value>;$/;"	m	class:bustub::TableGenerator::std
 vector	include/catalog/table_generator.h	/^  auto MakeValues(ColumnInsertMeta *col_meta, uint32_t count) -> std::vector<Value>;$/;"	m	class:bustub::TableGenerator::std
