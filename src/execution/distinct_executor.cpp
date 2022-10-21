@@ -26,12 +26,6 @@ auto DistinctExecutor::Next(Tuple *tuple, RID *rid) -> bool {
   while (child_executor_->Next(tuple, rid)) {
     HashKey key;
     std::vector<Value> values;
-    /*auto columns = output_schema->GetColumns();
-    values.reserve(columns.size());
-    for(const auto &col:columns){
-            values.push_back(col.GetExpr()->Evaluate(tuple,child_schema));
-    }
-    */
     for (uint32_t i = 0; i < child_schema->GetColumnCount(); i++) {
       values.push_back(tuple->GetValue(child_schema, i));
     }
