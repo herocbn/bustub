@@ -77,7 +77,7 @@ void BasicTest1() {
     delete txns[i];
   }
 }
-TEST(LockManagerTest, DISABLED_BasicTest) { BasicTest1(); }
+TEST(LockManagerTest, BasicTest) { BasicTest1(); }
 
 void TwoPLTest() {
   LockManager lock_mgr{};
