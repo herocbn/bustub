@@ -28,6 +28,7 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   // bool res = false;
   auto schema = (table_info_->schema_);
   auto txn = exec_ctx_->GetTransaction();
+  auto lock_mgr = exec_ctx_->GetLockManager();
   // Get the original tuple
   Tuple old_tuple;
   RID old_rid;
@@ -37,6 +38,13 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
     // Get the updated tuple
     auto updated_tuple = GenerateUpdatedTuple(old_tuple);
     // modify it in the table
+    if (txn->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+      // std::cout<<"Upgrading "<<txn->GetTransactionId()<<"  thread id = "<<txn->GetThreadId()<<"\n";
+      lock_mgr->LockUpgrade(txn, old_rid);
+    } else {
+      // std::cout<<"Exclusive "<<txn->GetTransactionId()<<" thread id = "<<txn->GetThreadId()<<"\n";
+      lock_mgr->LockExclusive(txn, old_rid);
+    }
     table_info_->table_->UpdateTuple(updated_tuple, old_rid, txn);
     // modify it in the index
     Tuple key_tuple;
@@ -44,7 +52,14 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
       auto key_schema = idx_info->key_schema_;
       auto key_attrs = idx_info->index_->GetKeyAttrs();
       key_tuple = updated_tuple.KeyFromTuple(schema, key_schema, key_attrs);
+      // idx_info->index_->DeleteEntry(old_tuple,old_rid,txn);
       idx_info->index_->InsertEntry(key_tuple, old_rid, txn);
+      auto catalog = exec_ctx_->GetCatalog();
+      auto table_oid = table_info_->oid_;
+      auto idx_oid = idx_info->index_oid_;
+      // old_tuple , updated_tuple
+      txn->GetIndexWriteSet()->emplace_back(IndexWriteRecord{old_rid, table_oid, WType::UPDATE, updated_tuple, old_tuple, idx_oid,
+                                            catalog});
     }
   }
   return false;
