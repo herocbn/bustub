@@ -106,26 +106,19 @@ void TwoPLTest() {
 
   try {
     lock_mgr.LockShared(txn, rid0);
-  
     CheckAborted(txn);
-  
     // Size shouldn't change here
     CheckTxnLockSize(txn, 0, 1);
-    
   } catch (TransactionAbortException &e) {
     // std::cout << e.GetInfo() << std::endl;
     CheckAborted(txn);
     // Size shouldn't change here
     CheckTxnLockSize(txn, 0, 1);
   }
-  
   // Need to call txn_mgr's abort
   txn_mgr.Abort(txn);
- 
   CheckAborted(txn);
-   
- CheckTxnLockSize(txn, 0, 0);
-
+  CheckTxnLockSize(txn, 0, 0);
   delete txn;
 }
 TEST(LockManagerTest, TwoPLTest) { TwoPLTest(); }

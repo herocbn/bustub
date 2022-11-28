@@ -1,4 +1,4 @@
-# Install script for directory: /home/cbn/DB/bustub/build_debug/googletest-download
+# Install script for directory: /home/cbn/Desktop/db/bustub/build_debug/googletest-download
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/cbn/DB/bustub/build_debug/googletest-download/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/cbn/Desktop/db/bustub/build_debug/googletest-download/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

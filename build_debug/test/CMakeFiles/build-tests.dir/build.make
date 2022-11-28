@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cbn/DB/bustub
+CMAKE_SOURCE_DIR = /home/cbn/Desktop/db/bustub
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cbn/DB/bustub/build_debug
+CMAKE_BINARY_DIR = /home/cbn/Desktop/db/bustub/build_debug
 
 # Utility rule file for build-tests.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/cbn/DB/bustub/build_debug
 include test/CMakeFiles/build-tests.dir/progress.make
 
 test/CMakeFiles/build-tests:
-	cd /home/cbn/DB/bustub/build_debug/test && /usr/bin/ctest --show-only
+	cd /home/cbn/Desktop/db/bustub/build_debug/test && /usr/bin/ctest --show-only
 
 build-tests: test/CMakeFiles/build-tests
 build-tests: test/CMakeFiles/build-tests.dir/build.make
@@ -67,10 +67,10 @@ test/CMakeFiles/build-tests.dir/build: build-tests
 .PHONY : test/CMakeFiles/build-tests.dir/build
 
 test/CMakeFiles/build-tests.dir/clean:
-	cd /home/cbn/DB/bustub/build_debug/test && $(CMAKE_COMMAND) -P CMakeFiles/build-tests.dir/cmake_clean.cmake
+	cd /home/cbn/Desktop/db/bustub/build_debug/test && $(CMAKE_COMMAND) -P CMakeFiles/build-tests.dir/cmake_clean.cmake
 .PHONY : test/CMakeFiles/build-tests.dir/clean
 
 test/CMakeFiles/build-tests.dir/depend:
-	cd /home/cbn/DB/bustub/build_debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cbn/DB/bustub /home/cbn/DB/bustub/test /home/cbn/DB/bustub/build_debug /home/cbn/DB/bustub/build_debug/test /home/cbn/DB/bustub/build_debug/test/CMakeFiles/build-tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cbn/Desktop/db/bustub/build_debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cbn/Desktop/db/bustub /home/cbn/Desktop/db/bustub/test /home/cbn/Desktop/db/bustub/build_debug /home/cbn/Desktop/db/bustub/build_debug/test /home/cbn/Desktop/db/bustub/build_debug/test/CMakeFiles/build-tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : test/CMakeFiles/build-tests.dir/depend
 

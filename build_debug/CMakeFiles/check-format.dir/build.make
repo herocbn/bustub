@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cbn/DB/bustub
+CMAKE_SOURCE_DIR = /home/cbn/Desktop/db/bustub
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cbn/DB/bustub/build_debug
+CMAKE_BINARY_DIR = /home/cbn/Desktop/db/bustub/build_debug
 
 # Utility rule file for check-format.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/cbn/DB/bustub/build_debug
 include CMakeFiles/check-format.dir/progress.make
 
 CMakeFiles/check-format:
-	../build_support/run_clang_format.py /usr/bin/clang-format-12 /home/cbn/DB/bustub/build_support/clang_format_exclusions.txt --source_dirs /home/cbn/DB/bustub/src,/home/cbn/DB/bustub/test, --quiet
+	../build_support/run_clang_format.py /usr/bin/clang-format-12 /home/cbn/Desktop/db/bustub/build_support/clang_format_exclusions.txt --source_dirs /home/cbn/Desktop/db/bustub/src,/home/cbn/Desktop/db/bustub/test, --quiet
 
 check-format: CMakeFiles/check-format
 check-format: CMakeFiles/check-format.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/check-format.dir/clean:
 .PHONY : CMakeFiles/check-format.dir/clean
 
 CMakeFiles/check-format.dir/depend:
-	cd /home/cbn/DB/bustub/build_debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cbn/DB/bustub /home/cbn/DB/bustub /home/cbn/DB/bustub/build_debug /home/cbn/DB/bustub/build_debug /home/cbn/DB/bustub/build_debug/CMakeFiles/check-format.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cbn/Desktop/db/bustub/build_debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cbn/Desktop/db/bustub /home/cbn/Desktop/db/bustub /home/cbn/Desktop/db/bustub/build_debug /home/cbn/Desktop/db/bustub/build_debug /home/cbn/Desktop/db/bustub/build_debug/CMakeFiles/check-format.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/check-format.dir/depend
 

@@ -1,0 +1,36 @@
+Makefile:140: recipe for target 'all' failed
+
+In file included from /usr/include/x86_64-linux-gnu/c++/7/bits/c++allocator.h:33:0,
+                 from /usr/include/c++/7/bits/allocator.h:46,
+                 from /usr/include/c++/7/memory:63,
+                 from /autograder/bustub/src/execution/delete_executor.cpp:13:
+/usr/include/c++/7/ext/new_allocator.h: In instantiation of ‘void __gnu_cxx::new_allocator<_Tp>::construct(_Up*, _Args&& ...) [with _Up = bustub::IndexWriteRecord; _Args = {bustub::RID&, unsigned int&, bustub::WType, bustub::Tuple&, bustub::Tuple, unsigned int&, bustub::Catalog*&}; _Tp = bustub::IndexWriteRecord]’:
+/usr/include/c++/7/bits/alloc_traits.h:475:4:   required from ‘static void std::allocator_traits<std::allocator<_Tp1> >::construct(std::allocator_traits<std::allocator<_Tp1> >::allocator_type&, _Up*, _Args&& ...) [with _Up = bustub::IndexWriteRecord; _Args = {bustub::RID&, unsigned int&, bustub::WType, bustub::Tuple&, bustub::Tuple, unsigned int&, bustub::Catalog*&}; _Tp = bustub::IndexWriteRecord; std::allocator_traits<std::allocator<_Tp1> >::allocator_type = std::allocator<bustub::IndexWriteRecord>]’
+/usr/include/c++/7/bits/deque.tcc:167:30:   required from ‘std::deque<_Tp, _Alloc>::reference std::deque<_Tp, _Alloc>::emplace_back(_Args&& ...) [with _Args = {bustub::RID&, unsigned int&, bustub::WType, bustub::Tuple&, bustub::Tuple, unsigned int&, bustub::Catalog*&}; _Tp = bustub::IndexWriteRecord; _Alloc = std::allocator<bustub::IndexWriteRecord>; std::deque<_Tp, _Alloc>::reference = bustub::IndexWriteRecord&]’
+/autograder/bustub/src/execution/delete_executor.cpp:54:116:   required from here
+/usr/include/c++/7/ext/new_allocator.h:136:4: error: no matching function for call to ‘bustub::IndexWriteRecord::IndexWriteRecord(bustub::RID&, unsigned int&, bustub::WType, bustub::Tuple&, bustub::Tuple, unsigned int&, bustub::Catalog*&)’
+  { ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /autograder/bustub/src/include/container/hash/extendible_hash_table.h:20:0,
+                 from /autograder/bustub/src/include/storage/index/extendible_hash_table_index.h:20,
+                 from /autograder/bustub/src/include/catalog/catalog.h:24,
+                 from /autograder/bustub/src/include/execution/executor_context.h:19,
+                 from /autograder/bustub/src/include/execution/executors/delete_executor.h:19,
+                 from /autograder/bustub/src/execution/delete_executor.cpp:15:
+/autograder/bustub/src/include/concurrency/transaction.h:82:3: note: candidate: bustub::IndexWriteRecord::IndexWriteRecord(bustub::RID, bustub::table_oid_t, bustub::WType, const bustub::Tuple&, bustub::index_oid_t, bustub::Catalog*)
+   IndexWriteRecord(RID rid, table_oid_t table_oid, WType wtype, const Tuple &tuple, index_oid_t index_oid,
+   ^~~~~~~~~~~~~~~~
+/autograder/bustub/src/include/concurrency/transaction.h:82:3: note:   candidate expects 6 arguments, 7 provided
+/autograder/bustub/src/include/concurrency/transaction.h:80:7: note: candidate: bustub::IndexWriteRecord::IndexWriteRecord(const bustub::IndexWriteRecord&)
+ class IndexWriteRecord {
+       ^~~~~~~~~~~~~~~~
+/autograder/bustub/src/include/concurrency/transaction.h:80:7: note:   candidate expects 1 argument, 7 provided
+/autograder/bustub/src/include/concurrency/transaction.h:80:7: note: candidate: bustub::IndexWriteRecord::IndexWriteRecord(bustub::IndexWriteRecord&&)
+/autograder/bustub/src/include/concurrency/transaction.h:80:7: note:   candidate expects 1 argument, 7 provided
+make[2]: *** [src/CMakeFiles/bustub_shared.dir/execution/delete_executor.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [src/CMakeFiles/bustub_shared.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [all] Error 2
+
+Test Failed: False is not true : Build failed.

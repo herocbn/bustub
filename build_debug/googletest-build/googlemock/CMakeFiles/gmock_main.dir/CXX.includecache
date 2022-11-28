@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/cbn/DB/bustub/build_debug/googletest-src/googlemock/src/gmock_main.cc
+/home/cbn/Desktop/db/bustub/build_debug/googletest-src/googlemock/src/gmock_main.cc
 iostream
 -
 gmock/gmock.h
-/home/cbn/DB/bustub/build_debug/googletest-src/googlemock/src/gmock/gmock.h
+/home/cbn/Desktop/db/bustub/build_debug/googletest-src/googlemock/src/gmock/gmock.h
 gtest/gtest.h
-/home/cbn/DB/bustub/build_debug/googletest-src/googlemock/src/gtest/gtest.h
+/home/cbn/Desktop/db/bustub/build_debug/googletest-src/googlemock/src/gtest/gtest.h
 tchar.h
 -
 

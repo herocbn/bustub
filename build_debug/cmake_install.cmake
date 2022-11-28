@@ -1,4 +1,4 @@
-# Install script for directory: /home/cbn/DB/bustub
+# Install script for directory: /home/cbn/Desktop/db/bustub
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/cbn/DB/bustub/build_debug/googletest-build/cmake_install.cmake")
-  include("/home/cbn/DB/bustub/build_debug/src/cmake_install.cmake")
-  include("/home/cbn/DB/bustub/build_debug/test/cmake_install.cmake")
+  include("/home/cbn/Desktop/db/bustub/build_debug/googletest-build/cmake_install.cmake")
+  include("/home/cbn/Desktop/db/bustub/build_debug/src/cmake_install.cmake")
+  include("/home/cbn/Desktop/db/bustub/build_debug/test/cmake_install.cmake")
 
 endif()
 
@@ -53,5 +53,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/cbn/DB/bustub/build_debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/cbn/Desktop/db/bustub/build_debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
