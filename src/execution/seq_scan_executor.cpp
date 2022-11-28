@@ -25,6 +25,15 @@ void SeqScanExecutor::Init() {
   auto output_schema = plan_->OutputSchema();
   auto table_schema = table_info_->schema_;
   is_same_schema_ = IsSameSchema(output_schema, &table_schema);
+  auto transaction = exec_ctx_->GetTransaction();
+  auto lockmanager = exec_ctx_->GetLockManager();
+  if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+    auto iter = table_info_->table_->Begin(exec_ctx_->GetTransaction());
+    while (iter != table_info_->table_->End()) {
+      lockmanager->LockShared(transaction, iter->GetRid());
+      ++iter;
+    }
+  }
 }
 // Catalog
 auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool {
@@ -32,9 +41,15 @@ auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool {
   auto schema = table_info_->schema_;
   auto opt = plan_->OutputSchema();
   bool res;
+  auto txn = exec_ctx_->GetTransaction();
+  auto lock_mgr = exec_ctx_->GetLockManager();
   while (table_iter_ != table_info_->table_->End()) {
     res = true;
     auto tp = &(*table_iter_);
+    if (txn->GetIsolationLevel() == IsolationLevel::READ_COMMITTED) {
+      lock_mgr->LockShared(txn, tp->GetRid());
+    }
+
     if (predicate != nullptr) {
       res = predicate->Evaluate(tp, &schema).GetAs<bool>();
     }
@@ -51,6 +66,9 @@ auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool {
         }
         *tuple = Tuple(values, opt);
         *rid = tp->GetRid();
+      }
+      if (txn->GetIsolationLevel() == IsolationLevel::READ_COMMITTED) {
+        lock_mgr->Unlock(txn, tp->GetRid());
       }
     }
     ++table_iter_;

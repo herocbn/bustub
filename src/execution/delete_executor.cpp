@@ -29,9 +29,15 @@ auto DeleteExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   Tuple del_tuple;
   RID del_rid;
   auto txn = exec_ctx_->GetTransaction();
+  auto lock_mgr = exec_ctx_->GetLockManager();
   auto schema = table_info_->schema_;
   auto indexes = exec_ctx_->GetCatalog()->GetTableIndexes(table_info_->name_);
   while (child_executor_->Next(&del_tuple, &del_rid)) {
+    if (txn->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+      lock_mgr->LockUpgrade(txn, del_rid);
+    } else {
+      lock_mgr->LockExclusive(txn, del_rid);
+    }
     bool res = table_info_->table_->MarkDelete(del_rid, txn);
     if (!res) {
       throw("Bad delete!");
@@ -42,6 +48,10 @@ auto DeleteExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
       auto key_attrs = idx_info->index_->GetKeyAttrs();
       key_tuple = del_tuple.KeyFromTuple(schema, key_schema, key_attrs);
       idx_info->index_->DeleteEntry(key_tuple, del_rid, txn);
+      auto catalog = exec_ctx_->GetCatalog();
+      auto table_oid = table_info_->oid_;
+      auto idx_oid = idx_info->index_oid_;
+      txn->GetIndexWriteSet()->emplace_back(IndexWriteRecord{del_rid, table_oid, WType::DELETE, del_tuple, Tuple{}, idx_oid, catalog});
     }
   }
   return false;

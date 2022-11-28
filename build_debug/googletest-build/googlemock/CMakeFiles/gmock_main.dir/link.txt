@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -pg -g  -shared -Wl,-soname,libgmock_main.so.1.12.1 -o ../../lib/libgmock_main.so.1.12.1 CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/cbn/DB/bustub/build_debug/lib: ../../lib/libgmock.so.1.12.1 ../../lib/libgtest.so.1.12.1 -lpthread 
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,libgmock_main.so.1.12.1 -o ../../lib/libgmock_main.so.1.12.1 CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/cbn/Desktop/db/bustub/build_debug/lib: ../../lib/libgmock.so.1.12.1 ../../lib/libgtest.so.1.12.1 -lpthread 
